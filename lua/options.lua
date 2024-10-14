@@ -12,5 +12,7 @@ o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,termin
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
 
+--markdown
+vim.g.mkdp_browser = 'safari'
 
 

@@ -1,5 +1,6 @@
 require "nvchad.mappings"
 
+
 -- add yours here
 
 local map = vim.keymap.set
@@ -11,6 +12,10 @@ map("i", "jk", "<ESC>")
 
 -- buffer 管理y
 map("n", "<D-w>", "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>")
+
+--tab 
+map("n", "<D-S-w>", "<CMD>tabclose<CR>")
+map("n", "<D-S-t>", "<CMD>tabnew<CR>")
 
 for i = 1, 9, 1 do
   map("n", string.format("<D-%s>", i), function()
@@ -132,6 +137,7 @@ map("n", "<D-p>", function ()
   end
 end) -- preview
 
+
 map("n", "<leader>tl", function ()
   vim.cmd("NvimTreeFocus")
   vim.cmd("Trouble diagnostics filter.severity=vim.diagnostic.severity.ERROR win.relative=win win.position=bottom")
@@ -140,6 +146,8 @@ end)
 
 -- session 最近打开的项目
 map("n", "<D-R>", "<CMD>Telescope session-lens<CR>")
+map("n", "<D-r>", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
+
 
 -- <F8>
 map("n", "<F8>", "", {
@@ -182,7 +190,7 @@ end,{noremap = true, silent = true})
 map("n", "?", function ()
   -- show help, ~/.config/nvim/Tutor/*.txt
   -- 获取文件内容
-  local file = vim.fn.expand("~/.config/nvim/Tutor/surround.txt")
+  local file = vim.fn.expand("~/.config/nvim/temp/temp")
   -- 打印内容
   vim.cmd("edit " .. file)
 end)
@@ -193,3 +201,46 @@ end)
 map("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
+
+
+map("n", "<tab>", function()
+  require("menu").open("default")
+end, {})
+
+map("n", "<RightMouse>", function()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+
+  local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+  require("menu").open(options, { mouse = true })
+end, {})
+
+
+map("n", "<D-o>", function()
+  local file_path = vim.fn.expand("<cfile>")   -- 获取光标下的文件名
+  local current_dir = vim.fn.expand("%:p:h")   -- 获取当前文件所在的目录
+  local full_path = current_dir .. '/' .. file_path  -- 拼接完整路径
+
+  local isweb = string.match(full_path, "http")
+  if string.match(full_path, "http") then
+    --如果是网页,那么用浏览器打开
+    vim.cmd("silent !open " .. file_path)  -- 直接使用光标下的路径，而不是拼接路径
+    print("Opening URL: " .. file_path)  -- 提示正在打开的网页
+  else
+    --文件
+    if vim.fn.filereadable(full_path) == 1 then
+      vim.cmd('edit ' .. full_path)   -- 如果文件存在，打开它
+    else
+      local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
+      if choice:lower() == 'y' then
+        vim.cmd('edit ' .. full_path)   -- 如果文件不存在，新建文件
+        print("New file created: " .. full_path)
+      else
+        print("File not created.")
+      end
+    end
+  end
+
+end)
+
+
+

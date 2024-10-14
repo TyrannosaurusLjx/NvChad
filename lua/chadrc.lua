@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "everforest",
+	theme = "gruvbox",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -38,6 +38,7 @@ M.copilot = {
 }
 
 --重写 
+
 M.ui = {
   nvdash = {
     load_on_startup = false,
@@ -52,7 +53,46 @@ M.ui = {
   },
 
   cmp = {
-    style = "default"
+      style = "atom",
+      mapping = (function()
+          local cmp = require("cmp")
+          local luasnip = require("luasnip")
+          return {
+              ['<CR>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                      if luasnip.expandable() then
+                          luasnip.expand()
+                      else
+                          cmp.confirm({
+                              select = true,
+                          })
+                      end
+                  else
+                      fallback()
+                  end
+              end),
+
+              ['<Tab>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                      cmp.select_next_item()
+                  elseif luasnip.locally_jumpable(1) then
+                    luasnip.jump(1)
+                  else
+                      fallback()
+                  end
+              end, { "i","s"}),
+
+              ["<S-Tab>"] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                      cmp.select_prev_item()
+                  elseif luasnip.locally_jumpable(-1) then
+                      luasnip.jump(-1)
+                  else
+                      fallback()
+                  end
+              end,{"i", "s"}),
+          }
+      end),
   },
 
   telescope = { style = "bordered" },
@@ -67,6 +107,10 @@ M.ui = {
   },
 
 
+
 }
+
+
+
 
 return M

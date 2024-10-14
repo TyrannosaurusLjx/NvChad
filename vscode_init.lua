@@ -1,4 +1,5 @@
 vim.g.mapleader = " " -- 设置leader键
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 
 local map = vim.keymap.set -- 设置键盘映射
 
@@ -19,9 +20,25 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lazy_config = require "configs.lazy"
+
 -- 在这里继续添加其他插件和配置
 require("lazy").setup({
-
+    -- Tree-sitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate", -- 运行 TS 更新
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                ensure_installed = { "c", "lua", "python", "javascript", "html", "css", "cpp" }, -- 你需要的语言
+                highlight = {
+                    enable = true, -- 开启高亮
+                    additional_vim_regex_highlighting = false, -- 关闭额外的 regex 高亮
+                },
+                -- 添加其他 Tree-sitter 配置...
+            }
+        end,
+    },
 -- surround
   {
       "kylechui/nvim-surround",
@@ -67,32 +84,34 @@ require("lazy").setup({
 })
 
 --- neovim-ui
-vim.api.nvim_exec([[
-    " THEME CHANGER
-    function! SetCursorLineNrColorInsert(mode)
-        " Insert mode: blue
-        if a:mode == "i"
-            call VSCodeNotify('nvim-theme.insert')
-
-        " Replace mode: red
-        elseif a:mode == "r"
-            call VSCodeNotify('nvim-theme.replace')
-        endif
-    endfunction
-
-    augroup CursorLineNrColorSwap
-        autocmd!
-        autocmd ModeChanged *:[vV\x16]* call VSCodeNotify('nvim-theme.visual')
-        autocmd ModeChanged *:[R]* call VSCodeNotify('nvim-theme.replace')
-        autocmd InsertEnter * call SetCursorLineNrColorInsert(v:insertmode)
-        autocmd InsertLeave * call VSCodeNotify('nvim-theme.normal')
-        autocmd CursorHold * call VSCodeNotify('nvim-theme.normal')
-        autocmd ModeChanged [vV\x16]*:* call VSCodeNotify('nvim-theme.normal')
-    augroup END
-]], false)
+-- vim.cmd([[
+--     " THEME CHANGER
+--     function! SetCursorLineNrColorInsert(mode)
+--         " Insert mode: blue
+--         if a:mode == "i"
+--             call VSCodeNotify('nvim-theme.insert')
+--
+--         " Replace mode: red
+--         elseif a:mode == "r"
+--             call VSCodeNotify('nvim-theme.replace')
+--         endif
+--     endfunction
+--
+--     augroup CursorLineNrColorSwap
+--         autocmd!
+--         autocmd ModeChanged *:[vV\x16]* call VSCodeNotify('nvim-theme.visual')
+--         autocmd ModeChanged *:[R]* call VSCodeNotify('nvim-theme.replace')
+--         autocmd InsertEnter * call SetCursorLineNrColorInsert(v:insertmode)
+--         autocmd InsertLeave * call VSCodeNotify('nvim-theme.normal')
+--         autocmd CursorHold * call VSCodeNotify('nvim-theme.normal')
+--         autocmd ModeChanged [vV\x16]*:* call VSCodeNotify('nvim-theme.normal')
+--     augroup END
+-- ]], false)
 
 --设置系统剪切板和 neovim 剪切板同步
 vim.opt.clipboard = "unnamedplus"
+
+local code = require('vscode')
 
 -- 键盘映射
 
@@ -105,20 +124,5 @@ map({"n", "v"}, "J" , "<C-d>" )
 map({"n", "v"}, "K" , "<C-u>" )
 map({"n"}, "L", "$")
 map({"n"}, "H", "^")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

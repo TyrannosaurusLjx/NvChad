@@ -5,13 +5,6 @@ return{
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
       ft = { "markdown" },
       build = function() vim.fn["mkdp#util#install"]() end,
-      init = function()
-        vim.g.mkdp_filetypes = { "markdown" }
-        vim.g.mkdp_browser = "safari"
-        vim.g.mkdp_auto_close = 0
-        vim.g.mkdp_auto_start = 0
-        vim.g.mkdp_combine_preview = 1
-      end,
   },
   {
    'img-paste-devs/img-paste.vim',
