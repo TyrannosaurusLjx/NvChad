@@ -10,6 +10,9 @@ return {
         require("nvim-tree").setup({
           filters = { dotfiles = false , git_ignored = false,},
           disable_netrw = true,
+    
+          git = { timeout = 1000 },
+
           hijack_cursor = true,
           sync_root_with_cwd = true,
           update_focused_file = {

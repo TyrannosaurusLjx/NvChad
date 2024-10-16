@@ -16,3 +16,6 @@ vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
 vim.g.mkdp_browser = 'safari'
 
 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevel = 5 -- 过长的都折叠

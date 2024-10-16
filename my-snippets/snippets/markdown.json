@@ -411,5 +411,15 @@
         "prefix": ["caution", "c"],
         "body": "> [!CAUTION]\n> ",
         "description": "Insert Caution"
+   },
+    "Inline Math": {
+        "prefix": "m",
+        "body": [" $${1}$ ${2}"],
+        "description": "Insert math block"
     },
+    "outline Math": {
+        "prefix": "M",
+        "body": ["$$\n${1}\n$$ ${2}"],
+        "description": "Insert math block"
+    }
 }

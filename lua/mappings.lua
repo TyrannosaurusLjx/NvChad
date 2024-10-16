@@ -29,7 +29,7 @@ map("n", "<D-}>", "<CMD>tabNext<CR>")
 map("n", "<D-{>", "<CMD>tabprevious<CR>")
 -- map("n", "<D-{>", "<CMD>lua require('nvchad.tabufline').move_buf(-1)<CR>")
 -- map("n", "<D-}>", "<CMD>lua require('nvchad.tabufline').move_buf(1)<CR>")
-map("n", "<tab>", "jzz")
+map("n", "<tab>", "za")
 
 --markdown 
 map("n", "<leader>mp", "<CMD>call mdip#MarkdownClipboardImage()<CR>")
@@ -69,8 +69,9 @@ map("v", "<leader-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim
 
 -- flash
 map({ "n", "x", "o" }, "s", "<CMD>lua require('flash').jump() <CR>", {desc = "Flash" })
-
 map({ "n", "x", "o" }, "S" ,"<CMD>lua require('flash').treesitter() <CR>" , {desc = "Flash Treesitter"} )
+map({ "o", "x" }, "R", "<CMD>lua require('flash').treesitter_search() <CR>", {desc = "Treesitter Search"} )
+
 
 --窗口管理
 map("n", "<leader>h", "<C-w>h")
@@ -110,7 +111,6 @@ map({"i", "n"}, "<D-s>", function ()
   else
     vim.cmd("w")
   end
-  
   vim.api.nvim_input('<ESC>')
 
 end)
@@ -195,17 +195,15 @@ map("n", "?", function ()
   vim.cmd("edit " .. file)
 end)
 
-
-
 --rename
 map("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
 
-map("n", "<tab>", function()
-  require("menu").open("default")
-end, {})
+-- map("n", "<tab>", function()
+--   require("menu").open("default")
+-- end, {})
 
 map("n", "<RightMouse>", function()
   vim.cmd.exec '"normal! \\<RightMouse>"'
@@ -220,18 +218,24 @@ map("n", "<D-o>", function()
   local current_dir = vim.fn.expand("%:p:h")   -- 获取当前文件所在的目录
   local full_path = current_dir .. '/' .. file_path  -- 拼接完整路径
 
-  local isweb = string.match(full_path, "http")
-  if string.match(full_path, "http") then
+  local isweb = string.match(full_path, "http") or string.match(file_path, "https")
+  if isweb then
     --如果是网页,那么用浏览器打开
-    vim.cmd("silent !open " .. file_path)  -- 直接使用光标下的路径，而不是拼接路径
-    print("Opening URL: " .. file_path)  -- 提示正在打开的网页
+    vim.cmd("silent !open '" .. file_path .. "")  -- 直接使用光标下的路径，而不是拼接路径
+    print('open web ' .. file_path)
+
+  elseif string.match(full_path, "png") or string.match(full_path, "jpg") or string.match(full_path, "jpeg") then
+    --如果是图片，那么用预览打开
+    vim.cmd("silent !open " .. full_path)  -- 使用拼接路径
+    print(full_path)
+
   else
     --文件
     if vim.fn.filereadable(full_path) == 1 then
       vim.cmd('edit ' .. full_path)   -- 如果文件存在，打开它
     else
       local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
-      if choice:lower() == 'y' then
+      if choice:lower() == 'y' or choice:lower() == '' then
         vim.cmd('edit ' .. full_path)   -- 如果文件不存在，新建文件
         print("New file created: " .. full_path)
       else
@@ -242,5 +246,44 @@ map("n", "<D-o>", function()
 
 end)
 
+-- markdown
+map("v", "<D-b>", function ()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("xi**<ESC>pa**<ESC>")
+  else
+    -- 什么也不做
+  end
+end, { noremap = true, silent = true })
+map("n", "<D-b>", function ()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("viwxi**<ESC>pa**<ESC>")
+  else
+    -- 什么也不做
+  end
+end, { noremap = true, silent = true })
+
+map("v", "<D-i>", function()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("xi*<ESC>pa*<ESC>")
+  end
+end, { noremap = true, silent = true })
+
+map("n", "<D-i>", function()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("viwxi*<ESC>pa*<ESC>")
+  end
+end, { noremap = true, silent = true })
+
+map("v", "<D-u>", function()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("xi~~<ESC>pa~~<ESC>")
+  end
+end, { noremap = true, silent = true })
+
+map("n", "<D-u>", function()
+  if vim.bo.filetype == "markdown" then
+    vim.api.nvim_input("viwxi~~<ESC>pa~~<ESC>")
+  end
+end, { noremap = true, silent = true })
 
 
