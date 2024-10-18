@@ -1,0 +1,10 @@
+{
+  "name" : {
+    "prefix" : "name",
+    "body" : [
+      "name: $1"
+    ],
+    "description" : "name"
+      }
+  }
+}

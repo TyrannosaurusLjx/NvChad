@@ -7,6 +7,17 @@ local map = vim.keymap.set
 
 map({"n", "v"}, ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("n", "Q", "<CMD>q<CR>")
+
+
+-- jump to mappings
+map("n", "<D-,>", "<CMD>edit ~/.config/nvim/lua/mappings.lua<CR>", {desc = "jump to mappings"})
+map("n", "<D-lt>", function ()
+  vim.cmd("tcd ~/.config/nvim")
+  vim.cmd("SessionRestore")
+  vim.cmd("NvimTreeToggle")
+end)
+
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
@@ -214,76 +225,73 @@ end, {})
 
 
 map("n", "<D-o>", function()
-  local file_path = vim.fn.expand("<cfile>")   -- 获取光标下的文件名
-  local current_dir = vim.fn.expand("%:p:h")   -- 获取当前文件所在的目录
-  local full_path = current_dir .. '/' .. file_path  -- 拼接完整路径
+  local tree_focus = vim.bo.filetype == "NvimTree"
 
-  local isweb = string.match(full_path, "http") or string.match(file_path, "https")
-  if isweb then
-    --如果是网页,那么用浏览器打开
-    vim.cmd("silent !open '" .. file_path .. "")  -- 直接使用光标下的路径，而不是拼接路径
-    print('open web ' .. file_path)
-
-  elseif string.match(full_path, "png") or string.match(full_path, "jpg") or string.match(full_path, "jpeg") then
-    --如果是图片，那么用预览打开
-    vim.cmd("silent !open " .. full_path)  -- 使用拼接路径
-    print(full_path)
-
+  -- 如果在文件树中, 直接调用 nvim 的 api 打开文件
+  if tree_focus then
+    require("nvim-tree.api").node.run.system()
   else
-    --文件
-    if vim.fn.filereadable(full_path) == 1 then
-      vim.cmd('edit ' .. full_path)   -- 如果文件存在，打开它
+    -- 否则, 需要判断光标下的文件类型
+    local file_path = vim.fn.expand("<cfile>")   -- 获取光标下的文件名
+    local current_dir = vim.fn.expand("%:p:h")   -- 获取当前文件所在的目录
+    local full_path = current_dir .. '/' .. file_path  -- 拼接完整路径
+
+    local isweb = string.match(file_path, "http") or string.match(file_path, "https")
+    local ispdf = string.match(file_path, "pdf")
+    local isimg = string.match(file_path, "png") or string.match(full_path, "jpg") or string.match(full_path, "jpeg")
+
+    if isweb then
+      --如果是网页,那么用浏览器打开
+      vim.cmd("silent !open '" .. file_path .. "")  -- 直接使用光标下的路径，而不是拼接路径
+      print('open web ' .. file_path)
+
+    elseif isimg then
+      --如果是图片，那么用预览打开
+      vim.cmd("silent !open " .. full_path)  -- 使用拼接路径
+      print(full_path)
+
+    elseif ispdf then
+      vim.cmd("silent !open " .. full_path)
+
     else
-      local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
-      if choice:lower() == 'y' or choice:lower() == '' then
-        vim.cmd('edit ' .. full_path)   -- 如果文件不存在，新建文件
-        print("New file created: " .. full_path)
+      --文件
+      if vim.fn.filereadable(full_path) == 1 then
+        vim.cmd('edit ' .. full_path)   -- 如果文件存在，打开它
       else
-        print("File not created.")
+        local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
+        if choice:lower() == 'y' then
+          vim.cmd('edit ' .. full_path)   -- 如果文件不存在，新建文件
+          print("New file created: " .. full_path)
+        else
+          print("File not created.")
+        end
       end
     end
+
   end
 
 end)
 
--- markdown
-map("v", "<D-b>", function ()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("xi**<ESC>pa**<ESC>")
-  else
-    -- 什么也不做
-  end
-end, { noremap = true, silent = true })
-map("n", "<D-b>", function ()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("viwxi**<ESC>pa**<ESC>")
-  else
-    -- 什么也不做
-  end
-end, { noremap = true, silent = true })
 
-map("v", "<D-i>", function()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("xi*<ESC>pa*<ESC>")
-  end
-end, { noremap = true, silent = true })
+-- journal
+vim.api.nvim_create_user_command('Today', function()
+  local today = os.date("%Y-%m-%d")
+  local filepath = vim.fn.expand("~/map/Journal/" .. today .. ".md")
 
-map("n", "<D-i>", function()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("viwxi*<ESC>pa*<ESC>")
+  -- 如果文件不存在，创建并写入日期标题
+  if vim.fn.filereadable(filepath) == 0 then
+    vim.cmd('silent !echo "\\# ' .. today .. '" > ' .. filepath)
   end
-end, { noremap = true, silent = true })
 
-map("v", "<D-u>", function()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("xi~~<ESC>pa~~<ESC>")
-  end
-end, { noremap = true, silent = true })
+  -- 打开文件
+  vim.cmd('edit ' .. filepath)
+end, {})
 
-map("n", "<D-u>", function()
-  if vim.bo.filetype == "markdown" then
-    vim.api.nvim_input("viwxi~~<ESC>pa~~<ESC>")
-  end
-end, { noremap = true, silent = true })
+-- journal today
+map("n", "<leader>jt", "<CMD>Today<CR>",{noremap = true, silent = true, desc = "today's journal"})
+-- journal date search
+map("n", "<leader>js", "<CMD>lua require('telescope.builtin').find_files({cwd = '~/map/Journal/'})<CR>",{noremap = true, silent = true, desc = "search journal depending on date"})
+-- journal content search
+map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd = '~/map/Journal/'})<CR>", {  desc = "search journal depending on content" })
 
 

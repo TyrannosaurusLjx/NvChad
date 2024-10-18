@@ -14,7 +14,6 @@ M.base46 = {
 }
 
 -- Add the following in your custom/configs/overrides.lua file. You can configure copilot to meet your needs here.
-
 M.copilot = {
   -- Possible configurable fields can be found on:
   -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration

@@ -1,3 +1,4 @@
-### Neovim Config For Tyrannosaurus
+# Neovim Config For Tyrannosaurus
+
 
 

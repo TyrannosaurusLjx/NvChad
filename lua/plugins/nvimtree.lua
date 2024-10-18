@@ -10,7 +10,6 @@ return {
         require("nvim-tree").setup({
           filters = { dotfiles = false , git_ignored = false,},
           disable_netrw = true,
-    
           git = { timeout = 1000 },
 
           hijack_cursor = true,
@@ -41,7 +40,8 @@ return {
             width = 30,
             preserve_window_proportions = true,
           },
+
         })
   end
-  }  
+  }
 }
