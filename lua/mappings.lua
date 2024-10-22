@@ -73,6 +73,9 @@ map("n", "<D-Z>", "<C-r>")
 map("n", "<leadr-/>", function()
     require("Comment.api").toggle.linewise.current()
   end, { desc = "Comment Toggle" })
+map("n", "<D-/>", function()
+    require("Comment.api").toggle.linewise.current()
+  end, { desc = "Comment Toggle" })
 
 map("v", "<leader-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
     { desc = "Comment Toggle" }
@@ -242,7 +245,7 @@ map("n", "<D-o>", function()
 
     if isweb then
       --如果是网页,那么用浏览器打开
-      vim.cmd("silent !open '" .. file_path .. "")  -- 直接使用光标下的路径，而不是拼接路径
+      vim.cmd("silent !open '" .. file_path .. "'")  -- 直接使用光标下的路径，而不是拼接路径
       print('open web ' .. file_path)
 
     elseif isimg then
