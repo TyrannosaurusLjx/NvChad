@@ -13,3 +13,5 @@ map(0, 'n', '<D-i>', 'viwxi*<esc>pa*<esc>', opts)
 map(0, 'v', '<D-u>', 'xi~~<esc>pa~~<esc>', opts)
 map(0, 'n', '<D-u>', 'viwxi~~<esc>pa~~<esc>', opts)
 
+-- tab for zap
+map(0, "n", "<tab>", "za", opts)

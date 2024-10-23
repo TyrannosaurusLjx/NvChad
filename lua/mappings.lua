@@ -8,6 +8,11 @@ map({"n", "v"}, ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "Q", "<CMD>q<CR>", { desc = "Quit" })
 
+map({"i", "c"}, "<D-h>", "<left>", { desc = "Move left" })
+map({"i", "c"}, "<D-j>", "<down>", { desc = "Move down" })
+map({"i", "c"}, "<D-k>", "<up>", { desc = "Move up" })
+map({"i", "c"}, "<D-l>", "<right>", { desc = "Move right" })
+
 -- jump to mappings
 map("n", "<D-,>", "<CMD>edit ~/.config/nvim/lua/mappings.lua<CR>", {desc = "jump to mappings"})
 map("n", "<D-lt>", function ()
@@ -17,7 +22,11 @@ map("n", "<D-lt>", function ()
 end, {desc = "Switch to NVim config and restore session"})
 
 -- buffer 管理
-map("n", "<D-w>", "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>", { desc = "Close buffer" })
+-- map("n", "<D-w>", "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>", { desc = "Close buffer" })
+map("n", "<D-w>", "<CMD>lua require('nvchad.tabufline').close_buffer()<CR>", { desc = "Close buffer" })
+
+map("i", "<D-s>", "<ESC>:w<CR>", { desc = "Save" , noremap = true, silent = true })
+map("n", "<D-s>", "<ESC>:w<CR>", { desc = "Save" , noremap = true, silent = true })
 
 --tab 
 map("n", "<D-S-w>", "<CMD>tabclose<CR>", { desc = "Close tab" })
@@ -29,11 +38,19 @@ for i = 1, 9, 1 do
   end, { desc = string.format("Switch to tab %d", i) })
 end
 
-map("n", "<D-]>", "<CMD>bnext<CR>", { desc = "Next buffer" })
-map("n", "<D-[>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<D-]>", "<CMD>lua require('nvchad.tabufline').next()<CR>", { desc = "Next buffer" })
+map("n", "<D-[>", "<CMD>lua require('nvchad.tabufline').prev()<CR>", { desc = "Previous buffer" })
 map("n", "<D-}>", "<CMD>tabNext<CR>", { desc = "Next tab" })
 map("n", "<D-{>", "<CMD>tabprevious<CR>", { desc = "Previous tab" })
-map("n", "<tab>", "za", { desc = "Toggle fold" })
+map("n", "<D-;>", "<CMD>lua require('nvchad.tabufline').move_buf(-1)<CR>", { desc = "Move buffer left" })
+map("n", "<D-'>", "<CMD>lua require('nvchad.tabufline').move_buf(1)<CR>", { desc = "Move buffer right" })
+
+
+map({"n", "v"}, "J" , "<C-d>" , {desc = "Scroll down", noremap = true, silent = true})
+map({"n", "v"}, "K" , "<C-u>" , {desc = "Scroll up", noremap = true, silent = true})
+map({"n"}, "L", "$", { desc = "Move to end of line" , noremap = true, silent = true })
+map({"n"}, "H", "^", {desc = "Move to start of line" , noremap = true, silent = true })
+
 
 --markdown 
 map("n", "<leader>mp", "<CMD>call mdip#MarkdownClipboardImage()<CR>", { desc = "Paste image from clipboard" })
@@ -93,6 +110,11 @@ map("n", "<D-L>", "<CMD>:vsplit<CR><CMD>Telescope buffers<CR>", { desc = "Vertic
 map("n", "<D-H>", "<CMD>:vsplit<CR><C-w>h<CMD>Telescope buffers<CR>", { desc = "Vertical split and move left" })
 map("n", "<D-J>", "<CMD>:split<CR><CMD>Telescope buffers<CR>", { desc = "Horizontal split and list buffers" })
 map("n", "<D-K>", "<CMD>:split<CR><C-w>k<CMD>Telescope buffers<CR>", { desc = "Horizontal split and move up" })
+map("n", "<d-right>", "<C-w>>", { desc = "Move window right" })
+map("n", "<d-left>", "<C-w><", { desc = "Move window left" })
+map("n", "<d-up>", "<C-w>+", { desc = "Move window up" })
+map("n", "<d-down>", "<C-w>-", { desc = "Move window down" })
+
 
 --终端
 map("n", "<D-t>", function()
@@ -115,7 +137,7 @@ map("n", "<leader>mm", "<CMD>lua require'bookmarks'.add_bookmarks(true)<CR>", { 
 
 --文件预览和 trouble
 map("n", "<D-E>", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
-map("n", "<D-p>", function ()
+map("n", "<tab>", function ()
   local win_id = vim.api.nvim_get_current_win()
   local buf_id = vim.api.nvim_win_get_buf(win_id)
   local buf_name = vim.api.nvim_buf_get_name(buf_id)
@@ -159,7 +181,8 @@ map("n", "<F8>", "", {
 map({"n", "v"}, "<D-c>", '"+y', { desc = "Copy to system clipboard" })
 
 -- 粘贴系统剪贴板的内容
-map({"n", "c", "i"}, "<D-v>", "<C-r>+", { desc = "Paste from system clipboard" })
+map({ "c", "i"}, "<D-v>", "<C-r>+", { desc = "Paste from system clipboard" })
+map("t", "<D-v>", "<C-\\><C-N>pi", { desc = "Paste from system clipboard" })
 
 -- 创建浮动终端窗口
 map("n", "<D-t>", function()
@@ -181,7 +204,7 @@ map("n", "?", function()
   -- 打开临时文件 ~/.config/nvim/temp/temp
   local file = vim.fn.expand("~/.config/nvim/temp/temp")
   vim.cmd("edit " .. file)
-end, { desc = "Show temp file" })
+end, { desc = "Show temp file" , noremap = true, silent = true })
 
 map("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")  -- 使用当前单词作为默认重命名

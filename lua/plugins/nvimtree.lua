@@ -7,7 +7,7 @@ local function my_on_attach(bufnr)
 
   -- copy default mappings here from defaults in next section
   vim.keymap.set('n', '<CR>',    api.node.open.edit,                  opts('Open'))
-  vim.keymap.set('n', '<Tab>',   "<CMD>lua require('nvim-tree-preview').watch()<CR>", {desc = "Preview" })
+  -- vim.keymap.set('n', '<Tab>',   "<CMD>lua require('nvim-tree-preview').watch()<CR>", {desc = "Preview" })
   -- 运行
   vim.keymap.set('n', '<F8>',    api.node.run.cmd,                    opts('Run Command'))
   vim.keymap.set('n', 'a',       api.fs.create,                       opts('Create File Or Directory'))
@@ -33,7 +33,11 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'M',       api.tree.toggle_no_bookmark_filter,  opts('Toggle Filter: No Bookmark'))
   vim.keymap.set('n', 'm',       api.marks.toggle,                    opts('Toggle Bookmark'))
 
-  vim.keymap.set('n', 'o',       api.node.open.edit,                  opts('Open'))
+  vim.keymap.set('n', 'o',       function ()
+    api.node.open.edit()
+    vim.cmd("NvimTreeFocus")
+  end,               opts('Open'))
+
   vim.keymap.set('n', 'O',       api.node.open.no_window_picker,      opts('Open: No Window Picker'))
   vim.keymap.set('n', 'p',       api.fs.paste,                        opts('Paste'))
   -- 导航到父目录
