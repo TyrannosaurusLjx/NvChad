@@ -48,6 +48,10 @@ map("n", "<D-'>", "<CMD>lua require('nvchad.tabufline').move_buf(1)<CR>", { desc
 
 map({"n", "v"}, "J" , "<C-d>" , {desc = "Scroll down", noremap = true, silent = true})
 map({"n", "v"}, "K" , "<C-u>" , {desc = "Scroll up", noremap = true, silent = true})
+-- 在 select 模式下将 J 和 K 映射到它们自己
+map("s", "J", "J", { noremap = true, silent = true })
+map("s", "K", "K", { noremap = true, silent = true })
+
 map({"n"}, "L", "$", { desc = "Move to end of line" , noremap = true, silent = true })
 map({"n"}, "H", "^", {desc = "Move to start of line" , noremap = true, silent = true })
 
@@ -201,10 +205,13 @@ map("t", "<ESC>", function()
 end, { noremap = true, silent = true, desc = "Close terminal and exit" })
 
 map("n", "?", function()
-  -- 打开临时文件 ~/.config/nvim/temp/temp
-  local file = vim.fn.expand("~/.config/nvim/temp/temp")
+  -- 打开临时文件 ~/.config/nvim/temp/notify
+  local file = vim.fn.expand("~/.config/nvim/temp/notify")
+  vim.cmd("redir! > " .. file)
+  vim.cmd(":silent messages")
+  vim.cmd("redir END")
   vim.cmd("edit " .. file)
-end, { desc = "Show temp file" , noremap = true, silent = true })
+end, { desc = "Show error file" , noremap = true, silent = true })
 
 map("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")  -- 使用当前单词作为默认重命名
@@ -280,4 +287,23 @@ end, { desc = "Open today's journal" })
 map("n", "<leader>jt", "<CMD>Today<CR>", { noremap = true, silent = true, desc = "Open today's journal" })
 map("n", "<leader>js", "<CMD>lua require('telescope.builtin').find_files({cwd = '~/map/Journal/'})<CR>", { desc = "Search journal by date" })
 map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd = '~/map/Journal/'})<CR>", { desc = "Search journal by content" })
+
+-- map("i", "/", function()
+--   local options = {
+--     "Open file",
+--     "Save file",
+--     "Exit"
+--   }
+--
+--   vim.ui.select(options, { prompt = "Choose an option:" }, function(choice)
+--     if choice == "Open file" then
+--       vim.cmd("edit")
+--     elseif choice == "Save file" then
+--       vim.cmd("write")
+--     elseif choice == "Exit" then
+--       vim.cmd("quit")
+--     end
+--   end)
+-- end, { desc = "Select" })
+
 

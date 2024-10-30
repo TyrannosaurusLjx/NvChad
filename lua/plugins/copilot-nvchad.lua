@@ -1,3 +1,4 @@
+-- 这是把 copilot嵌入到 cmp 中的
 local overrides = require("chadrc")
 
 local plugins = {
@@ -34,3 +35,60 @@ local plugins = {
 
 }
 return plugins
+
+-- return{
+--    {
+--     "zbirenbaum/copilot.lua",
+--     -- cmd = "Copilot",
+--     event = "InsertEnter",
+--     config = function()
+--       require("copilot").setup({
+--         suggestion = {
+--           enabled = true,
+--           auto_trigger = false,
+--           hide_during_completion = true,
+--           debounce = 75,
+--           keymap = {
+--             -- accept = "<D-S-a>",
+--             accept_word = "<C-a>",
+--             next = "<C-]>",
+--             prev = "<C-[>",
+--           },
+--         },
+--         filetypes = {
+--           yaml = true,
+--           markdown = true,
+--           help = true,
+--           gitcommit = true,
+--           gitrebase = true,
+--           hgcommit = true,
+--           svn = true,
+--           cvs = true,
+--           ["."] = true,
+--         },
+--
+--
+--       })
+--     end,
+--   },
+--
+--   {
+--     "hrsh7th/nvim-cmp",
+--     dependencies = {
+--       {
+--         "zbirenbaum/copilot-cmp",
+--         config = function()
+--           require("copilot_cmp").setup()
+--         end,
+--       },
+--     },
+--     opts = {
+--       sources = {
+--         { name = "luasnip",  group_index = 2 },
+--         { name = "buffer",   group_index = 2 },
+--         { name = "nvim_lua", group_index = 2 },
+--         { name = "path",     group_index = 1 },
+--       },
+--     },
+--   }
+-- }

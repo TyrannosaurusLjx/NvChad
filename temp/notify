@@ -1,0 +1,4 @@
+
+处理 VimEnter 自动命令 "*" 时发生错误:
+auto-session ERROR: Error restoring session, disabling auto save.
+Error: vim/_editor.lua:0: VimEnter 自动命令 "*"..script nvim_exec2() called at VimEnter 自动命令 "*":0../Users/ljx/.local/share/nvim/sessions/%2F.vim, line 30: Vim(normal):E490: 找不到折叠

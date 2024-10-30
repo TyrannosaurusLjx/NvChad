@@ -13,11 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-dofile(vim.g.base46_cache .. "syntax")
-dofile(vim.g.base46_cache .. "treesitter")
 
 -- load plugins
 require("lazy").setup({
@@ -31,10 +26,15 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+dofile(vim.g.base46_cache .. "syntax")
+dofile(vim.g.base46_cache .. "treesitter")
 
 require "options"
 require "nvchad.autocmds"
-require "more" -- 我其他的配置
+-- require "more" -- 我其他的配置
 
 vim.schedule(function()
   require "mappings"
@@ -46,10 +46,10 @@ end)
 vim.cmd [[
   "set guifont=Hack\ Nerd\ Font\ Mono:h16
   "set guifont=JetBrains\ Mono:h16
-  set guifont=Hack\ Nerd\ Font:h16
+  set guifont=Hack\ Nerd\ Font:h15
 ]]
 vim.cmd [[
-  set scrolloff=5
+  set scrolloff=10
 ]]
 
 vim.g.copilot_filetypes = {markdown = true}
