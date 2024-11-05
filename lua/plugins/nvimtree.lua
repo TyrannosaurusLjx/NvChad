@@ -106,6 +106,7 @@ return {
             preserve_window_proportions = true,
           },
           on_attach = my_on_attach,
+          respect_buf_cwd = true,
         })
   end
   }

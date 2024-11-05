@@ -166,7 +166,8 @@ map("n", "<leader>tl", function ()
 end, { desc = "Focus NvimTree and show Trouble diagnostics" })
 
 -- session 最近打开的项目
-map("n", "<D-R>", "<CMD>Telescope session-lens<CR>", { desc = "Session lens" })
+-- map("n", "<D-R>", "<CMD>Telescope session-lens<CR>", { desc = "Session lens" })
+map("n","<D-R>", "<CMD>Telescope workspaces<CR>", {desc = "Workspaces"})
 map("n", "<D-r>", "<cmd>Telescope oldfiles<CR>", { desc = "Find old files" })
 
 -- <F8>

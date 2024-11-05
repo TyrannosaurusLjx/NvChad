@@ -98,7 +98,18 @@ M.ui = {
       end),
   },
 
-  telescope = { style = "bordered" },
+  telescope = { 
+    style = "bordered",
+    extensions = {
+      workspaces = {
+        -- keep insert mode after selection in the picker, default is false
+        keep_insert = true,
+        -- Highlight group used for the path in the picker, default is "String"
+        path_hl = "String"
+      }
+    }
+
+  },
 
   statusline = {
     theme = "minimal", -- default/vscode/vscode_colored/minimal
