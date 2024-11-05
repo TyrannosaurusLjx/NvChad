@@ -44,10 +44,13 @@ end)
 
 -- 预配置
 vim.cmd [[
-  "set guifont=Hack\ Nerd\ Font\ Mono:h16
+  " set guifont=Hack\ Nerd\ Font\ Mono:h16
   "set guifont=JetBrains\ Mono:h16
-  set guifont=Hack\ Nerd\ Font:h15
+  "set guifont=Hack\ Nerd\ Font:h15
+  set guifont=Hack\ Nerd\ Font\ Mono:w0:h16:#e-antialias:#h-full
+  NvimTreeResize 20
 ]]
+
 vim.cmd [[
   set scrolloff=10
 ]]

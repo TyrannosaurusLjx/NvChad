@@ -92,6 +92,9 @@ map("n", "<D-/>", function()
     require("Comment.api").toggle.linewise.current()
   end, { desc = "Comment Toggle" })
 
+map("v", "<D-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+    { desc = "Comment Toggle" }
+)
 map("v", "<leader-/>", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
     { desc = "Comment Toggle" }
 )
@@ -155,6 +158,7 @@ map("n", "<tab>", function ()
     vim.cmd("lua require('goto-preview').goto_preview_definition()")
   end
 end, { desc = "Preview file or diagnostics" })
+map("n", "gh", "<CMD>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover doc" })
 
 map("n", "<leader>tl", function ()
   vim.cmd("NvimTreeFocus")
@@ -305,5 +309,4 @@ map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd
 --     end
 --   end)
 -- end, { desc = "Select" })
-
-
+--

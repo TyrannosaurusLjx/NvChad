@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "gruvbox",
+	theme = "gruvchad",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -90,6 +90,10 @@ M.ui = {
                       fallback()
                   end
               end,{"i", "s"}),
+
+              sources = {
+              name = "nvim_lsp",
+            }
           }
       end),
   },
