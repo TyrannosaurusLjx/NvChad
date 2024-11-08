@@ -139,8 +139,8 @@ map("t", "<ESC>",function ()
 end,{noremap = true, silent = true, desc = "Hide terminal and exit"})
 
 -- bookmark
-map("n", "<leader>ml", "<CMD>lua require'bookmarks'.toggle_bookmarks()<CR>", { desc = "Toggle bookmarks" })
-map("n", "<leader>mm", "<CMD>lua require'bookmarks'.add_bookmarks(true)<CR>", { desc = "Add bookmarks" })
+map("n", "gm", "<CMD>lua require'bookmarks'.toggle_bookmarks()<CR>", { desc = "Toggle bookmarks" })
+map("n", "mm", "<CMD>lua require'bookmarks'.add_bookmarks(true)<CR>", { desc = "Add bookmarks" })
 
 --文件预览和 trouble
 map("n", "<D-E>", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })

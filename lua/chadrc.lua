@@ -120,6 +120,14 @@ M.ui = {
     modules = nil,
   },
 
+  tabufline = {
+    modules = {
+      abc = function ()
+        return "hi"
+      end
+    }
+
+  }
 
 
 }

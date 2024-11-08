@@ -12,7 +12,7 @@ return{
             mappings_enabled = true, -- If the value is false, only valid for global keymaps: toggle、add、delete_on_virt、show_desc
             keymap = {
                 toggle = "<leader>mL", -- Toggle bookmarks(global keymap)
-                close =  "q" , -- close bookmarks (buf keymap)
+                close =  "<ESC>" , -- close bookmarks (buf keymap)
                 add = "<leader>mm", -- Add bookmarks(global keymap)
                 add_global = "<leader>mg", -- Add global bookmarks(global keymap), global bookmarks will appear in all projects. Identified with the symbol '󰯾'
                 jump = "<CR>", -- Jump from bookmarks(buf keymap)
