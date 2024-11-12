@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "gruvchad",
+	theme = "everforest",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -14,27 +14,27 @@ M.base46 = {
 }
 
 -- Add the following in your custom/configs/overrides.lua file. You can configure copilot to meet your needs here.
-M.copilot = {
-  -- Possible configurable fields can be found on:
-  -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
-  suggestion = {
-    enable = false,
-  },
-  panel = {
-    enable = false,
-  },
-  filetypes = {
-    yaml = true,
-    markdown = true,
-    help = false,
-    gitcommit = false,
-    gitrebase = false,
-    hgcommit = false,
-    svn = false,
-    cvs = false,
-    ["."] = false,
-  },
-}
+-- M.copilot = {
+--   -- Possible configurable fields can be found on:
+--   -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+--   suggestion = {
+--     enable = false,
+--   },
+--   panel = {
+--     enable = false,
+--   },
+--   filetypes = {
+--     yaml = true,
+--     markdown = true,
+--     help = false,
+--     gitcommit = false,
+--     gitrebase = false,
+--     hgcommit = false,
+--     svn = false,
+--     cvs = false,
+--     ["."] = false,
+--   },
+-- }
 
 --重写 
 
@@ -52,7 +52,7 @@ M.ui = {
   },
 
   cmp = {
-      style = "atom",
+      style = "atom_colored",
       mapping = (function()
           local cmp = require("cmp")
           local luasnip = require("luasnip")

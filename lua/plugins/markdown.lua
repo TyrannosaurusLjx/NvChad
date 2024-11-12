@@ -1,4 +1,4 @@
-return{
+M = {
 -- install without yarn or npm
   {
       "iamcco/markdown-preview.nvim",
@@ -10,18 +10,110 @@ return{
    'img-paste-devs/img-paste.vim',
     -- lazy = false,
   },
+  -- {
+  --     'MeanderingProgrammer/render-markdown.nvim',
+  --     lazy = false,
+  --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+  --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+  --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  --     config = function()
+  --         require('render-markdown').setup({
+  --           render_modes = { 'n', 'c' , 'i' },
+  --           enabled = not vim.g.vscode -- 在 vscode 中使用会渲染的很奇怪
+  --     })
+  --     end,
+  -- },
+
   {
-      'MeanderingProgrammer/render-markdown.nvim',
-      lazy = false,
-      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-      config = function()
-          require('render-markdown').setup({
-            render_modes = { 'n', 'c' , 'i' },
-            enabled = not vim.g.vscode -- 在 vscode 中使用会渲染的很奇怪
+    "OXY2DEV/markview.nvim",
+    lazy = false,      -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons"
+    },
+    config = function ()
+      local presets = require("markview.presets").headings;
+      require("markview").setup({
+        hybrid_modes = { "n", "i"}, -- 光标到这里就会变成源代码
+        modes = {"i", "n"},
+
+        -- 标题
+        -- https://github.com/OXY2DEV/markview.nvim/wiki/Headings
+        -- headings = {
+        --   enable = true,
+        --   shift_width = 1,
+        --   heading_1 = MD_HEADING_STYLE,
+        --   heading_2 = MD_HEADING_STYLE,
+        --   heading_3 = MD_HEADING_STYLE,
+        --   heading_4 = MD_HEADING_STYLE,
+        --   heading_5 = MD_HEADING_STYLE,
+        --   heading_6 = MD_HEADING_STYLE,
+        --
+        -- },
+        headings = presets.simple
+
       })
-      end,
+    end
+
   }
 }
 
+MD_HEADING_STYLE = {
+  style = "label",
+
+  --- Alignment of the heading.
+  ---@type "left" | "center" | "right"
+  align = "center",
+
+  --- Primary highlight group. Used by other
+  --- options that end with "_hl" when their
+  --- values are nil.
+  ---@type string
+  hl = "MarkviewHeading3",
+
+  --- Left corner, Added before the left padding
+  ---@type string?
+  corner_left = "",
+
+  --- Left padding, Added before the icon
+  ---@type string?
+  padding_left = " ",
+
+  --- Right padding, Added after the heading text
+  ---@type string?
+  padding_right = " ",
+
+  --- Right corner, Added after the right padding
+  ---@type string?
+  corner_right = "",
+
+  ---@type string?
+  corner_left_hl = "MarkviewHeading3Sign",
+  ---@type string?
+  padding_left_hl = nil,
+
+  ---@type string?
+  padding_right_hl = nil,
+  ---@type string?
+  corner_right_hl = "MarkviewHeading3Sign",
+
+  --- Text to show on the signcolumn.
+  ---@type string?
+  sign = "󰌕 ",
+
+  --- Highlight group for the sign.
+  ---@type string?
+  sign_hl = "MarkviewHeading3Sign",
+
+  --- Icon to show before the heading text.
+  ---@type string?
+  icon = "",
+
+  --- Highlight group for the Icon.
+  ---@type string?
+  icon_hl = "MarkviewHeading3"
+}
+
+return M

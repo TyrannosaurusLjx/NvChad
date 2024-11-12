@@ -137,6 +137,7 @@ map("t", "<ESC>",function ()
   vim.api.nvim_input('<C-\\><C-N>')
   require('nvchad.tabufline').close_buffer()
 end,{noremap = true, silent = true, desc = "Hide terminal and exit"})
+map("t", "<D-ESC>", "<C-\\><C-n>", { desc = "go nterm" })
 
 -- bookmark
 map("n", "gm", "<CMD>lua require'bookmarks'.toggle_bookmarks()<CR>", { desc = "Toggle bookmarks" })
@@ -311,3 +312,16 @@ map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd
 --   end)
 -- end, { desc = "Select" })
 --
+
+-- copilot
+-- map("i", "<C-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
+map("i", "<C-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
+map("i","<C-n>", "<CMD>lua require('copilot.suggestion').next()<CR>", {desc = "Next suggestion", noremap = true})
+map("i","<C-f>", "<CMD>lua require('copilot.suggestion').prev()<CR>", {desc = "Prev suggestion", noremap = true})
+
+--- ci"
+map("n", "ciq", "ci'", { noremap = true, silent = true })
+map("n", "ciQ", 'ci"', { noremap = true, silent = true })
+
+
+
