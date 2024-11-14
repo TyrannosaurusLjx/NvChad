@@ -60,6 +60,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<2-LeftMouse>',  api.node.open.edit,           opts('Open'))
   vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
   vim.keymap.set('n', "s", "<CMD>lua require('flash').jump() <CR>", {desc = "Flash" })
+  vim.keymap.set("n", "-", "<CMD>:NvimTreeResize 20<CR>")
+  vim.keymap.set("n", "=", "<CMD>:NvimTreeResize 35<CR>")
 end
 
 return {

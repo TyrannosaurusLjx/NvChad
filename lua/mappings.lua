@@ -314,8 +314,8 @@ map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd
 --
 
 -- copilot
--- map("i", "<C-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
-map("i", "<C-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
+map("i", "<D-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
+map("i", "<D-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
 map("i","<C-n>", "<CMD>lua require('copilot.suggestion').next()<CR>", {desc = "Next suggestion", noremap = true})
 map("i","<C-f>", "<CMD>lua require('copilot.suggestion').prev()<CR>", {desc = "Prev suggestion", noremap = true})
 
@@ -324,4 +324,26 @@ map("n", "ciq", "ci'", { noremap = true, silent = true })
 map("n", "ciQ", 'ci"', { noremap = true, silent = true })
 
 
+if vim.g.neovide then
+    map({ "n", "v" }, "<D-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
+    map({ "n", "v" }, "<D-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+    map({ "n", "v" }, "<D-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
+end
 
+
+---------------------- harspoon
+
+-- vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
+    -- { desc = "Open harpoon window" })
+-- map("n", "<leader>a", function() harpoon:list():add() end)
+-- map("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+--
+-- map("n", "<C-h>", function() harpoon:list():select(1) end)
+-- map("n", "<C-t>", function() harpoon:list():select(2) end)
+-- map("n", "<C-n>", function() harpoon:list():select(3) end)
+-- map("n", "<C-s>", function() harpoon:list():select(4) end)
+--
+-- -- Toggle previous & next buffers stored within Harpoon list
+-- map("n", "<C-S-P>", function() harpoon:list():prev() end)
+-- map("n", "<C-S-N>", function() harpoon:list():next() end)
+-- ---------------------

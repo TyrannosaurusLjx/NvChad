@@ -1,4 +1,285 @@
-M = {
+-- local MD_HEADING_STYLE_1 = {
+--   style = "label",
+--
+--   --- Alignment of the heading.
+--   ---@type "left" | "center" | "right"
+--   align = "center",
+--
+--   --- Primary highlight group. Used by other
+--   --- options that end with "_hl" when their
+--   --- values are nil.
+--   ---@type string
+--   hl = "MarkviewHeading1",
+--
+--   --- Left corner, Added before the left padding
+--   ---@type string?
+--   corner_left = "",
+--
+--   --- Left padding, Added before the icon
+--   ---@type string?
+--   padding_left = " ",
+--
+--   --- Right padding, Added after the heading text
+--   ---@type string?
+--   padding_right = " ",
+--
+--   --- Right corner, Added after the right padding
+--   ---@type string?
+--   corner_right = "",
+--
+--   ---@type string?
+--   corner_left_hl = "MarkviewHeading1Sign",
+--   ---@type string?
+--   padding_left_hl = nil,
+--
+--   ---@type string?
+--   padding_right_hl = nil,
+--   ---@type string?
+--   corner_right_hl = "MarkviewHeading1Sign",
+--
+--   --- Text to show on the signcolumn.
+--   ---@type string?
+--   sign = "󰌕 ",
+--
+--   --- Highlight group for the sign.
+--   ---@type string?
+--   sign_hl = "MarkviewHeading1Sign",
+--
+--   --- Icon to show before the heading text.
+--   ---@type string?
+--   icon = "",
+--
+--   --- Highlight group for the Icon.
+--   ---@type string?
+--   icon_hl = "MarkviewHeading1"
+-- }
+--
+--
+-- local MD_HEADING_STYLE_2 = {
+--   style = "label",
+--
+--   --- Alignment of the heading.
+--   ---@type "left" | "center" | "right"
+--   align = "center",
+--
+--   --- Primary highlight group. Used by other
+--   --- options that end with "_hl" when their
+--   --- values are nil.
+--   ---@type string
+--   hl = "MarkviewHeading2",
+--
+--   --- Left corner, Added before the left padding
+--   ---@type string?
+--   corner_left = "",
+--
+--   --- Left padding, Added before the icon
+--   ---@type string?
+--   padding_left = " ",
+--
+--   --- Right padding, Added after the heading text
+--   ---@type string?
+--   padding_right = " ",
+--
+--   --- Right corner, Added after the right padding
+--   ---@type string?
+--   corner_right = "",
+--
+--   ---@type string?
+--   corner_left_hl = "MarkviewHeading2Sign",
+--   ---@type string?
+--   padding_left_hl = nil,
+--
+--   ---@type string?
+--   padding_right_hl = nil,
+--   ---@type string?
+--   corner_right_hl = "MarkviewHeading2Sign",
+--
+--   --- Text to show on the signcolumn.
+--   ---@type string?
+--   sign = "󰌕 ",
+--
+--   --- Highlight group for the sign.
+--   ---@type string?
+--   sign_hl = "MarkviewHeading2Sign",
+--
+--   --- Icon to show before the heading text.
+--   ---@type string?
+--   icon = "",
+--
+--   --- Highlight group for the Icon.
+--   ---@type string?
+--   icon_hl = "MarkviewHeading2"
+-- }
+--
+-- local MD_HEADING_STYLE_3 = {
+--   style = "label",
+--
+--   --- Alignment of the heading.
+--   ---@type "left" | "center" | "right"
+--   align = "center",
+--
+--   --- Primary highlight group. Used by other
+--   --- options that end with "_hl" when their
+--   --- values are nil.
+--   ---@type string
+--   hl = "MarkviewHeading3",
+--
+--   --- Left corner, Added before the left padding
+--   ---@type string?
+--   corner_left = "",
+--
+--   --- Left padding, Added before the icon
+--   ---@type string?
+--   padding_left = " ",
+--
+--   --- Right padding, Added after the heading text
+--   ---@type string?
+--   padding_right = " ",
+--
+--   --- Right corner, Added after the right padding
+--   ---@type string?
+--   corner_right = "",
+--
+--   ---@type string?
+--   corner_left_hl = "MarkviewHeading3Sign",
+--   ---@type string?
+--   padding_left_hl = nil,
+--
+--   ---@type string?
+--   padding_right_hl = nil,
+--   ---@type string?
+--   corner_right_hl = "MarkviewHeading3Sign",
+--
+--   --- Text to show on the signcolumn.
+--   ---@type string?
+--   sign = "󰌕 ",
+--
+--   --- Highlight group for the sign.
+--   ---@type string?
+--   sign_hl = "MarkviewHeading3Sign",
+--
+--   --- Icon to show before the heading text.
+--   ---@type string?
+--   icon = "",
+--
+--   --- Highlight group for the Icon.
+--   ---@type string?
+--   icon_hl = "MarkviewHeading3"
+-- }
+--
+-- local MD_HEADING_STYLE_4 = {
+--   style = "label",
+--
+--   --- Alignment of the heading.
+--   ---@type "left" | "center" | "right"
+--   align = "center",
+--
+--   --- Primary highlight group. Used by other
+--   --- options that end with "_hl" when their
+--   --- values are nil.
+--   ---@type string
+--   hl = "MarkviewHeading4",
+--
+--   --- Left corner, Added before the left padding
+--   ---@type string?
+--   corner_left = "",
+--
+--   --- Left padding, Added before the icon
+--   ---@type string?
+--   padding_left = " ",
+--
+--   --- Right padding, Added after the heading text
+--   ---@type string?
+--   padding_right = " ",
+--
+--   --- Right corner, Added after the right padding
+--   ---@type string?
+--   corner_right = "",
+--
+--   ---@type string?
+--   corner_left_hl = "MarkviewHeading4Sign",
+--   ---@type string?
+--   padding_left_hl = nil,
+--
+--   ---@type string?
+--   padding_right_hl = nil,
+--   ---@type string?
+--   corner_right_hl = "MarkviewHeading4Sign",
+--
+--   --- Text to show on the signcolumn.
+--   ---@type string?
+--   sign = "󰌕 ",
+--
+--   --- Highlight group for the sign.
+--   ---@type string?
+--   sign_hl = "MarkviewHeading4Sign",
+--
+--   --- Icon to show before the heading text.
+--   ---@type string?
+--   icon = "",
+--
+--   --- Highlight group for the Icon.
+--   ---@type string?
+--   icon_hl = "MarkviewHeading4"
+-- }
+--
+-- local MD_HEADING_STYLE_5 = {
+--   style = "label",
+--
+--   --- Alignment of the heading.
+--   ---@type "left" | "center" | "right"
+--   align = "center",
+--
+--   --- Primary highlight group. Used by other
+--   --- options that end with "_hl" when their
+--   --- values are nil.
+--   ---@type string
+--   hl = "MarkviewHeading5",
+--
+--   --- Left corner, Added before the left padding
+--   ---@type string?
+--   corner_left = "",
+--
+--   --- Left padding, Added before the icon
+--   ---@type string?
+--   padding_left = " ",
+--
+--   --- Right padding, Added after the heading text
+--   ---@type string?
+--   padding_right = " ",
+--
+--   --- Right corner, Added after the right padding
+--   ---@type string?
+--   corner_right = "",
+--
+--   ---@type string?
+--   corner_left_hl = "MarkviewHeading5Sign",
+--   ---@type string?
+--   padding_left_hl = nil,
+--
+--   ---@type string?
+--   padding_right_hl = nil,
+--   ---@type string?
+--   corner_right_hl = "MarkviewHeading5Sign",
+--
+--   --- Text to show on the signcolumn.
+--   ---@type string?
+--   sign = "󰌕 ",
+--
+--   --- Highlight group for the sign.
+--   ---@type string?
+--   sign_hl = "MarkviewHeading5Sign",
+--
+--   --- Icon to show before the heading text.
+--   ---@type string?
+--   icon = "",
+--
+--   --- Highlight group for the Icon.
+--   ---@type string?
+--   icon_hl = "MarkviewHeading5"
+-- }
+
+return{
 -- install without yarn or npm
   {
       "iamcco/markdown-preview.nvim",
@@ -26,8 +307,9 @@ M = {
 
   {
     "OXY2DEV/markview.nvim",
-    lazy = false,      -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
+    -- lazy = true,      -- Recommended
+    event = "VeryLazy",
+    ft = "markdown", -- If you decide to lazy-load anyway
 
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
@@ -42,17 +324,15 @@ M = {
         -- 标题
         -- https://github.com/OXY2DEV/markview.nvim/wiki/Headings
         -- headings = {
-        --   enable = true,
-        --   shift_width = 1,
-        --   heading_1 = MD_HEADING_STYLE,
-        --   heading_2 = MD_HEADING_STYLE,
-        --   heading_3 = MD_HEADING_STYLE,
-        --   heading_4 = MD_HEADING_STYLE,
-        --   heading_5 = MD_HEADING_STYLE,
-        --   heading_6 = MD_HEADING_STYLE,
-        --
+        --   -- enable = true,
+        --   -- shift_width = 1,
+        --   heading_1 = MD_HEADING_STYLE_1,
+        --   heading_2 = MD_HEADING_STYLE_2,
+        --   heading_3 = MD_HEADING_STYLE_3,
+        --   heading_4 = MD_HEADING_STYLE_4,
+        --   heading_5 = MD_HEADING_STYLE_5,
         -- },
-        headings = presets.simple
+        headings = presets.arrowed
 
       })
     end
@@ -60,60 +340,3 @@ M = {
   }
 }
 
-MD_HEADING_STYLE = {
-  style = "label",
-
-  --- Alignment of the heading.
-  ---@type "left" | "center" | "right"
-  align = "center",
-
-  --- Primary highlight group. Used by other
-  --- options that end with "_hl" when their
-  --- values are nil.
-  ---@type string
-  hl = "MarkviewHeading3",
-
-  --- Left corner, Added before the left padding
-  ---@type string?
-  corner_left = "",
-
-  --- Left padding, Added before the icon
-  ---@type string?
-  padding_left = " ",
-
-  --- Right padding, Added after the heading text
-  ---@type string?
-  padding_right = " ",
-
-  --- Right corner, Added after the right padding
-  ---@type string?
-  corner_right = "",
-
-  ---@type string?
-  corner_left_hl = "MarkviewHeading3Sign",
-  ---@type string?
-  padding_left_hl = nil,
-
-  ---@type string?
-  padding_right_hl = nil,
-  ---@type string?
-  corner_right_hl = "MarkviewHeading3Sign",
-
-  --- Text to show on the signcolumn.
-  ---@type string?
-  sign = "󰌕 ",
-
-  --- Highlight group for the sign.
-  ---@type string?
-  sign_hl = "MarkviewHeading3Sign",
-
-  --- Icon to show before the heading text.
-  ---@type string?
-  icon = "",
-
-  --- Highlight group for the Icon.
-  ---@type string?
-  icon_hl = "MarkviewHeading3"
-}
-
-return M

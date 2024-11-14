@@ -19,5 +19,25 @@
         "prefix": "$$",
         "body": ["$$\n${1}\n$$ ${2}"],
         "description": "Insert math block"
+    },
+    "scr" : {
+        "prefix": "scr",
+        "body": ["\\mathscr{{1}}$ ${2}"],
+        "description": "Insert mathscr"
+    },
+    "bb" : {
+        "prefix": "bb",
+        "body": ["\\mathbb{{1}}$ ${2}"],
+        "description": "Insert mathbb"
+    },
+    "sum" : {
+        "prefix": "sum",
+        "body": ["\\sum\\limits_{{1}}^{${2}}$ ${3}"],
+        "description": "Insert sum"
+    },
+    "int" : {
+        "prefix": "int",
+        "body": ["\\int\\limits_{{1}}^{${2}}$ ${3}"],
+        "description": "Insert int"
     }
 }

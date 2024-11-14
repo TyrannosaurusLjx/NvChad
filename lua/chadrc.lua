@@ -7,6 +7,10 @@ local M = {}
 M.base46 = {
 	theme = "everforest",
 
+  integrations = {
+  "markview"
+  }
+
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
@@ -98,7 +102,7 @@ M.ui = {
       end),
   },
 
-  telescope = { 
+  telescope = {
     style = "bordered",
     extensions = {
       workspaces = {
