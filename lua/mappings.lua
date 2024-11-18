@@ -1,4 +1,6 @@
 require "nvchad.mappings"
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 -- add yours here
 
@@ -64,7 +66,7 @@ map("n", "<D-a>", "<CMD>AerialToggle<CR>", { desc = "Toggle Aerial" })
 -- 文件搜索等
 map("n", "<D-F>", "<CMD>Telescope live_grep<CR>",{noremap = true,silent = true, desc = "Live grep"})
 map("n", "<D-e>", "<CMD>Telescope buffers<CR>", { desc = "List buffers" })
-map("n", "<D-O>", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<D-o>", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<D-f>", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
 
 -- 取消搜索高亮
@@ -233,49 +235,49 @@ map("n", "<RightMouse>", function()
 end, { desc = "Open context menu" })
 
 
-map("n", "<D-o>", function()
-  local tree_focus = vim.bo.filetype == "NvimTree"
-
-  if tree_focus then
-    -- 如果在 NvimTree 中，打开系统默认的文件打开方式
-    require("nvim-tree.api").node.run.system()
-  else
-    -- 获取光标下的文件路径并判断类型
-    local file_path = vim.fn.expand("<cfile>")
-    local current_dir = vim.fn.expand("%:p:h")
-    local full_path = current_dir .. '/' .. file_path
-
-    local is_web = string.match(file_path, "http") or string.match(file_path, "https")
-    local is_pdf = string.match(file_path, "pdf")
-    local is_img = string.match(full_path, "png") or string.match(full_path, "jpg") or string.match(full_path, "jpeg")
-
-    if is_web then
-      vim.cmd("silent !open '" .. file_path .. "'")  -- 打开网页
-      print('Open web: ' .. file_path)
-
-    elseif is_img then
-      vim.cmd("silent !open " .. full_path)  -- 打开图片
-      print('Open image: ' .. full_path)
-
-    elseif is_pdf then
-      vim.cmd("silent !open " .. full_path)  -- 打开 PDF
-
-    else
-      -- 检查文件是否存在，不存在则询问是否创建
-      if vim.fn.filereadable(full_path) == 1 then
-        vim.cmd('edit ' .. full_path)
-      else
-        local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
-        if choice:lower() == 'y' then
-          vim.cmd('edit ' .. full_path)
-          print("New file created: " .. full_path)
-        else
-          print("File not created.")
-        end
-      end
-    end
-  end
-end, { desc = "Open file or link" })
+-- map("n", "<D-o>", function()
+--   local tree_focus = vim.bo.filetype == "NvimTree"
+--
+--   if tree_focus then
+--     -- 如果在 NvimTree 中，打开系统默认的文件打开方式
+--     require("nvim-tree.api").node.run.system()
+--   else
+--     -- 获取光标下的文件路径并判断类型
+--     local file_path = vim.fn.expand("<cfile>")
+--     local current_dir = vim.fn.expand("%:p:h")
+--     local full_path = current_dir .. '/' .. file_path
+--
+--     local is_web = string.match(file_path, "http") or string.match(file_path, "https")
+--     local is_pdf = string.match(file_path, "pdf")
+--     local is_img = string.match(full_path, "png") or string.match(full_path, "jpg") or string.match(full_path, "jpeg")
+--
+--     if is_web then
+--       vim.cmd("silent !open '" .. file_path .. "'")  -- 打开网页
+--       print('Open web: ' .. file_path)
+--
+--     elseif is_img then
+--       vim.cmd("silent !open " .. full_path)  -- 打开图片
+--       print('Open image: ' .. full_path)
+--
+--     elseif is_pdf then
+--       vim.cmd("silent !open " .. full_path)  -- 打开 PDF
+--
+--     else
+--       -- 检查文件是否存在，不存在则询问是否创建
+--       if vim.fn.filereadable(full_path) == 1 then
+--         vim.cmd('edit ' .. full_path)
+--       else
+--         local choice = vim.fn.input("File does not exist. Create new file? (y/n): ")
+--         if choice:lower() == 'y' then
+--           vim.cmd('edit ' .. full_path)
+--           print("New file created: " .. full_path)
+--         else
+--           print("File not created.")
+--         end
+--       end
+--     end
+--   end
+-- end, { desc = "Open file or link" })
 
 -- 创建并打开当天的 journal
 vim.api.nvim_create_user_command('Today', function()
@@ -347,3 +349,4 @@ end
 -- map("n", "<C-S-P>", function() harpoon:list():prev() end)
 -- map("n", "<C-S-N>", function() harpoon:list():next() end)
 -- ---------------------
+

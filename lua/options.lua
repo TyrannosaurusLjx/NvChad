@@ -6,7 +6,7 @@ local o = vim.o
 o.cursorlineopt ='both' -- to enable cursorline!
 
 -- auto_session
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- undo file 
 vim.opt.undofile = true

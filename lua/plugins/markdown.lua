@@ -309,7 +309,7 @@ return{
     "OXY2DEV/markview.nvim",
     -- lazy = true,      -- Recommended
     event = "VeryLazy",
-    ft = "markdown", -- If you decide to lazy-load anyway
+    ft = {"markdown", "md", "rmd", "latex"}, -- If you decide to lazy-load anyway
 
     dependencies = {
         "nvim-treesitter/nvim-treesitter",

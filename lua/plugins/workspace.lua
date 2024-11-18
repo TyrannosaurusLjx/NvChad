@@ -15,7 +15,7 @@ return{
           open_pre = {},
           open = {
             "SessionRestore",
-            "NvimTreeOpen",
+            -- "NvimTreeOpen",
           },
         },
 

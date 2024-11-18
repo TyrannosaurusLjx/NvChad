@@ -1,11 +1,11 @@
 
-Workspace [Configuration -> /Users/ljx/Configuration/] added
-Workspace [Idea -> /Users/ljx/idea/] added
-Workspace [map -> /Users/ljx/map/] added
-
-Workspace [nvim-config -> /Users/ljx/.config/nvim/] added
-Could not restore session: /Users/ljx/.config/nvim
-...r/neovim/0.10.2_1/share/nvim/runtime/lua/vim/lsp/rpc.lua:800: Spawning language server with cmd: `{ "lua-language-server" }` failed. The language server is either not installed, missing from PATH, or not executable.
-
- 
-[nvim-treesitter] [0/1] Downloading tree-sitter-luadoc...
+E5108: Error executing lua: vim/_editor.lua:0: nvim_exec2(): Vim:auto-session ERROR: Error restoring session, disabling auto save.
+stack traceback:
+	[C]: in function 'nvim_exec2'
+	vim/_editor.lua: in function 'cmd'
+	.../share/nvim/lazy/workspaces.nvim/lua/workspaces/init.lua:133: in function 'run_hook'
+	.../share/nvim/lazy/workspaces.nvim/lua/workspaces/init.lua:153: in function 'run_hooks'
+	.../share/nvim/lazy/workspaces.nvim/lua/workspaces/init.lua:534: in function 'open'
+	...workspaces.nvim/lua/telescope/_extensions/workspaces.lua:71: in function 'run_replace_or_original'
+	...re/nvim/lazy/telescope.nvim/lua/telescope/actions/mt.lua:65: in function 'key_func'
+	...hare/nvim/lazy/telescope.nvim/lua/telescope/mappings.lua:293: in function <...hare/nvim/lazy/telescope.nvim/lua/telescope/mappings.lua:292>
