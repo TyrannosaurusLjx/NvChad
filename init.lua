@@ -48,13 +48,12 @@ vim.cmd [[
   " set guifont=Hack\ Nerd\ Font\ Mono:h16
   "set guifont=JetBrains\ Mono:h16
   "set guifont=Hack\ Nerd\ Font:h15
-  "set guifont=Hack\ Nerd\ Font\ Mono:w0:h16:#e-antialias:#h-full
+  set guifont=Hack\ Nerd\ Font\ Mono:w0:h18:#e-antialias:#h-full
   set scrolloff=15
   Copilot suggestion
+  tcd ~/wiki/
   NvimTreeResize 20
 ]]
 
 
 vim.g.copilot_filetypes = {markdown = true}
-
-

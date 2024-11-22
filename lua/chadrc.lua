@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "everforest",
+	theme = "onedark",
 
   integrations = {
   "markview"

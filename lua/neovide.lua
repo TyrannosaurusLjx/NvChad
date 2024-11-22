@@ -59,8 +59,6 @@ map({"n"}, "H", "^", {desc = "Move to start of line" , noremap = true, silent = 
 --markdown 
 map("n", "<leader>mp", "<CMD>call mdip#MarkdownClipboardImage()<CR>", { desc = "Paste image from clipboard" })
 
-map("n", "<D-a>", "<CMD>AerialToggle<CR>", { desc = "Toggle Aerial" })
-
 -- 文件搜索等
 map("n", "<D-F>", "<CMD>Telescope live_grep<CR>",{noremap = true,silent = true, desc = "Live grep"})
 map("n", "<D-e>", "<CMD>Telescope buffers<CR>", { desc = "List buffers" })
@@ -314,10 +312,10 @@ map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd
 --
 
 -- copilot
-map("i", "<D-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
-map("i", "<D-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
-map("i","<C-n>", "<CMD>lua require('copilot.suggestion').next()<CR>", {desc = "Next suggestion", noremap = true})
-map("i","<C-f>", "<CMD>lua require('copilot.suggestion').prev()<CR>", {desc = "Prev suggestion", noremap = true})
+-- map("i", "<D-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
+-- map("i", "<D-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
+-- map("i","<C-n>", "<CMD>lua require('copilot.suggestion').next()<CR>", {desc = "Next suggestion", noremap = true})
+-- map("i","<C-f>", "<CMD>lua require('copilot.suggestion').prev()<CR>", {desc = "Prev suggestion", noremap = true})
 
 --- ci"
 map("n", "ciq", "ci'", { noremap = true, silent = true })
