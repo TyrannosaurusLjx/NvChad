@@ -34,7 +34,7 @@ vim.g.neovide_cursor_trail_size = 0.1
 vim.g.neovide_cursor_animate_command_line = true
 
 -- 在除了输入模式外，关闭输入法(不能输入中文路径)
-vim.g.neovide_input_ime = true
+-- vim.g.neovide_input_ime = true
 local function set_ime(args)
     if args.event:match("Enter$") then
         vim.g.neovide_input_ime = true
