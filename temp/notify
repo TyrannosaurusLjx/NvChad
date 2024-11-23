@@ -1,14 +1,2 @@
 
-Workspace [graduation -> /Users/ljx/GraduationProject/] added
-Workspace [map -> /Users/ljx/map/] added
-Workspace [nvim-config -> /Users/ljx/.config/nvim/] added
-Workspace [Configuration -> /Users/ljx/Configuration/] added
-Workspace [Idea -> /Users/ljx/idea/] added
-Could not restore session: /Users/ljx/map
-Error executing vim.schedule lua callback: .../neovim/0.10.2_1/share/nvim/runtime/lua/vim/lsp/util.lua:485: index out of range
-stack traceback:
-	[C]: in function 'get_line_byte_from_position'
-	.../neovim/0.10.2_1/share/nvim/runtime/lua/vim/lsp/util.lua:485: in function 'apply_text_edits'
-	...l/share/nvim/lazy/copilot.lua/lua/copilot/suggestion.lua:489: in function ''
-	vim/_editor.lua: in function <vim/_editor.lua:0>
-"others/pca.md" 13L, 105B 已写入
+Command `Copilot1` not found after loading `copilot.lua`

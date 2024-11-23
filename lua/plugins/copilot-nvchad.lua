@@ -48,12 +48,12 @@ return{
           auto_trigger = false,
           hide_during_completion = true,
           debounce = 75,
-          -- keymap = {
-          --   accept = "<C-a>",
-          --   accept_word = "<C-w>",
-          --   next = "<C-n>",
-          --   prev = "<C-p>",
-          -- },
+          keymap = {
+            accept = "<C-a>",
+            accept_word = "<C-w>",
+            next = "<C-n>",
+            prev = "<C-p>",
+          },
         },
         filetypes = {
           yaml = true,

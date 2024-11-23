@@ -14,7 +14,7 @@ map({"i", "c"}, "<D-k>", "<up>", { desc = "Move up" })
 map({"i", "c"}, "<D-l>", "<right>", { desc = "Move right" })
 
 -- jump to mappings
-map("n", "<D-,>", "<CMD>edit ~/.config/nvim/lua/mappings.lua<CR>", {desc = "jump to mappings"})
+map("n", "<D-,>", "<CMD>edit ~/.config/nvim/lua/neovide.lua<CR>", {desc = "jump to mappings"})
 map("n", "<D-lt>", function ()
   vim.cmd("tcd ~/.config/nvim")
   vim.cmd("SessionRestore")
@@ -32,11 +32,11 @@ map("n", "<D-s>", "<ESC>:w<CR>", { desc = "Save" , noremap = true, silent = true
 map("n", "<D-S-w>", "<CMD>tabclose<CR>", { desc = "Close tab" })
 map("n", "<D-S-t>", "<CMD>tabnew<CR>", { desc = "New tab" })
 
-for i = 1, 9, 1 do
-  map("n", string.format("<D-%s>", i), function()
-    vim.api.nvim_set_current_buf(vim.t.bufs[i])
-  end, { desc = string.format("Switch to tab %d", i) })
-end
+-- for i = 1, 9, 1 do
+--   map("n", string.format("<D-%s>", i), function()
+--     vim.api.nvim_set_current_buf(vim.t.bufs[i])
+--   end, { desc = string.format("Switch to tab %d", i) })
+-- end
 
 map("n", "<D-]>", "<CMD>lua require('nvchad.tabufline').next()<CR>", { desc = "Next buffer" })
 map("n", "<D-[>", "<CMD>lua require('nvchad.tabufline').prev()<CR>", { desc = "Previous buffer" })
@@ -123,8 +123,8 @@ map("n", "<d-down>", "<C-w>-", { desc = "Move window down" })
 
 --终端
 map("n", "<D-t>", function()
-  require("nvchad.term").toggle { pos = "float", size = 0.3 }
-end, { desc = "Create Float Terminal" })
+  vim.cmd("edit ~/wiki/capture.md")
+end, { desc = "open capture.md" })
 
 map("n", "<C-`>", function()
   require("nvchad.term").toggle { pos = "sp" , size = 0.25 }
@@ -143,20 +143,20 @@ map("n", "mm", "<CMD>lua require'bookmarks'.add_bookmarks(true)<CR>", { desc = "
 
 --文件预览和 trouble
 map("n", "<D-E>", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
-map("n", "<tab>", function ()
-  local win_id = vim.api.nvim_get_current_win()
-  local buf_id = vim.api.nvim_win_get_buf(win_id)
-  local buf_name = vim.api.nvim_buf_get_name(buf_id)
-
-  -- Check if the buffer name contains 'NvimTree'
-  if string.match(buf_name, "NvimTree") then
-    -- If in NvimTree, execute nvim-tree-preview watch
-    vim.cmd('lua require("nvim-tree-preview").watch()')
-  else
-    -- Otherwise, toggle Trouble diagnostics
-    vim.cmd("lua require('goto-preview').goto_preview_definition()")
-  end
-end, { desc = "Preview file or diagnostics" })
+-- map("n", "<tab>", function ()
+--   local win_id = vim.api.nvim_get_current_win()
+--   local buf_id = vim.api.nvim_win_get_buf(win_id)
+--   local buf_name = vim.api.nvim_buf_get_name(buf_id)
+--
+--   -- Check if the buffer name contains 'NvimTree'
+--   if string.match(buf_name, "NvimTree") then
+--     -- If in NvimTree, execute nvim-tree-preview watch
+--     vim.cmd('lua require("nvim-tree-preview").watch()')
+--   else
+--     -- Otherwise, toggle Trouble diagnostics
+--     vim.cmd("lua require('goto-preview').goto_preview_definition()")
+--   end
+-- end, { desc = "Preview file or diagnostics" })
 map("n", "gh", "<CMD>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover doc" })
 
 map("n", "<leader>tl", function ()
@@ -169,21 +169,6 @@ end, { desc = "Focus NvimTree and show Trouble diagnostics" })
 map("n","<D-R>", "<CMD>Telescope workspaces<CR>", {desc = "Workspaces"})
 map("n", "<D-r>", "<cmd>Telescope oldfiles<CR>", { desc = "Find old files" })
 
--- <F8>
-map("n", "<F8>", "", {
-  noremap = true,
-  silent = true,
-  callback = function()
-    if vim.bo.filetype == "markdown" then
-      vim.cmd("MarkdownPreview")
-    elseif vim.bo.filetype == "tex" then
-      vim.cmd("silent !xelatex % &")
-    else
-      print("Unsupported file type")
-    end
-  end,
-  desc = "File type-specific action"
-})
 
 -- 复制当前选中的内容到系统剪贴板
 map({"n", "v"}, "<D-c>", '"+y', { desc = "Copy to system clipboard" })
@@ -192,10 +177,6 @@ map({"n", "v"}, "<D-c>", '"+y', { desc = "Copy to system clipboard" })
 map({ "c", "i"}, "<D-v>", "<C-r>+", { desc = "Paste from system clipboard" })
 map("t", "<D-v>", "<C-\\><C-N>pi", { desc = "Paste from system clipboard" })
 
--- 创建浮动终端窗口
-map("n", "<D-t>", function()
-  require("nvchad.term").toggle { pos = "float", size = 0.3 }
-end, { desc = "Create Float Terminal" })
 
 -- 创建水平终端窗口
 map("n", "<C-`>", function()
@@ -278,48 +259,36 @@ end, { desc = "Open context menu" })
 -- 创建并打开当天的 journal
 vim.api.nvim_create_user_command('Today', function()
   local today = os.date("%Y-%m-%d")
-  local filepath = vim.fn.expand("~/map/Journal/" .. today .. ".md")
-
+  local filepath = vim.fn.expand("~/wiki/" .. today .. ".md")
   if vim.fn.filereadable(filepath) == 0 then
     vim.cmd('silent !echo "\\# ' .. today .. '" > ' .. filepath)
+    vim.cmd('silent !echo "\\#\\# " .. "TODO" >> ' .. filepath)
   end
 
   vim.cmd('edit ' .. filepath)
 end, { desc = "Open today's journal" })
 
 -- 快捷键
-map("n", "<leader>jt", "<CMD>Today<CR>", { noremap = true, silent = true, desc = "Open today's journal" })
-map("n", "<leader>js", "<CMD>lua require('telescope.builtin').find_files({cwd = '~/map/Journal/'})<CR>", { desc = "Search journal by date" })
-map("n", "<leader>j<S-s>", "<CMD>lua require('telescope.builtin').live_grep({cwd = '~/map/Journal/'})<CR>", { desc = "Search journal by content" })
+map("n", "<leader>ww", "<CMD>Today<CR>", { noremap = true, silent = true, desc = "Open today's journal" })
+map("n", "<leader>ws", "<CMD>lua require('telescope.builtin').find_files({cwd = '~/wiki/'})<CR>", { desc = "Search wiki" })
+map("n", "<leader>wS", "<CMD>lua require('telescope.builtin').live_grep({cwd = '~/wiki/'})<CR>", { desc = "search wiki content" })
+map("n", "<leader><CR>", "<CMD>lua require 'mdeval'.eval_code_block()<CR>", {desc = "run code"})
+-- map("i", "<C-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>")
+-- map("i", "<C-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>")
 
--- map("i", "/", function()
---   local options = {
---     "Open file",
---     "Save file",
---     "Exit"
---   }
---
---   vim.ui.select(options, { prompt = "Choose an option:" }, function(choice)
---     if choice == "Open file" then
---       vim.cmd("edit")
---     elseif choice == "Save file" then
---       vim.cmd("write")
---     elseif choice == "Exit" then
---       vim.cmd("quit")
---     end
---   end)
--- end, { desc = "Select" })
---
-
--- copilot
--- map("i", "<D-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Accept line"})
--- map("i", "<D-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Accept word"})
--- map("i","<C-n>", "<CMD>lua require('copilot.suggestion').next()<CR>", {desc = "Next suggestion", noremap = true})
--- map("i","<C-f>", "<CMD>lua require('copilot.suggestion').prev()<CR>", {desc = "Prev suggestion", noremap = true})
-
---- ci"
-map("n", "ciq", "ci'", { noremap = true, silent = true })
-map("n", "ciQ", 'ci"', { noremap = true, silent = true })
-
+map("n", "<F8>", "", {
+  noremap = true,
+  silent = true,
+  callback = function()
+    if vim.bo.filetype == "markdown" then
+      vim.cmd("MarkdownPreview")
+    elseif vim.bo.filetype == "tex" then
+      vim.cmd("silent !xelatex % &")
+    else
+      print("Unsupported file type")
+    end
+  end,
+  desc = "File type-specific action"
+})
 
 

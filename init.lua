@@ -57,3 +57,4 @@ vim.cmd [[
 
 
 vim.g.copilot_filetypes = {markdown = true}
+vim.g.markdown_fenced_languages = {'python', 'cpp'}
