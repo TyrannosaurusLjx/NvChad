@@ -1,2 +1,114 @@
 
-Command `Copilot1` not found after loading `copilot.lua`
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:101: in function <...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:100>
+^I[C]: in function 'nvim_win_call'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:100: in function 'refresh_all'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:44: in function 'setup'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:57: in function 'setup'
+^I/Users/ljx/.config/nvim/lua/plugins/ibl.lua:11: in function 'config'
+^I...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:376: in function <...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:374>
+^I[C]: in function 'xpcall'
+^I.../.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/util.lua:135: in function 'try'
+^I...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:391: in function 'config'
+^I...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:358: in function '_load'
+^I...local/share/nvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:197: in function 'load'
+^I...hare/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:85: in function <...hare/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:72>
+^I[C]: in function 'nvim_exec_autocmds'
+^I...jx/.local/share/nvim/lazy/NvChad/lua/nvchad/autocmds.lua:15: in function <...jx/.local/share/nvim/lazy/NvChad/lua/nvchad/autocmds.lua:6>
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:127: in function 'debounced_refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:143: in function 'debounced_refresh'
+^I...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:27: in function <...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:26>
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function ''
+^Ivim/_editor.lua: in function <vim/_editor.lua:0>
+Mode: V
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:127: in function 'debounced_refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:143: in function 'debounced_refresh'
+^I...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:27: in function <...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:26>
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:46: in function <...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:40>
+^I[C]: in function 'nvim_exec_autocmds'
+^I...hare/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/nui.lua:252: in function 'on_select'
+^I...are/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/init.lua:83: in function 'handler'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:210: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:209>
+^I[C]: in function 'xpcall'
+^I...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:149: in function 'safe_handle'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:83: in function 'ui_attach_cb'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:112: in function 'process'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:135: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:118>
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:127: in function 'debounced_refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:143: in function 'debounced_refresh'
+^I...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:48: in function <...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:40>
+^I[C]: in function 'nvim_exec_autocmds'
+^I...hare/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/nui.lua:252: in function 'on_select'
+^I...are/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/init.lua:83: in function 'handler'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:210: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:209>
+^I[C]: in function 'xpcall'
+^I...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:149: in function 'safe_handle'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:83: in function 'ui_attach_cb'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:112: in function 'process'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:135: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:118>
+foldtextresult 12 /Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: attempt to call field 'default_count_opts' (a table value)
+stack traceback:
+^I/Users/ljx/.config/nvim/lua/plugins/mkdnflow.lua:79: in function 'object_count_opts'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:239: in function 'count_objects'
+^I.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:327: in function <.../share/nvim/lazy/mkdnflow.nvim/lua/mkdnflow/foldtext.lua:319>
+^I[C]: in function 'foldtextresult'
+^I.../share/nvim/lazy/indent-blankline.nvim/lua/ibl/utils.lua:403: in function 'get_foldtextresult'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:323: in function 'refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:127: in function 'debounced_refresh'
+^I...l/share/nvim/lazy/indent-blankline.nvim/lua/ibl/init.lua:143: in function 'debounced_refresh'
+^I...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:48: in function <...are/nvim/lazy/indent-blankline.nvim/lua/ibl/autocmds.lua:40>
+^I[C]: in function 'nvim_exec_autocmds'
+^I...hare/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/nui.lua:252: in function 'on_select'
+^I...are/nvim/lazy/noice.nvim/lua/noice/ui/popupmenu/init.lua:83: in function 'handler'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:210: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:209>
+^I[C]: in function 'xpcall'
+^I...local/share/nvim/lazy/noice.nvim/lua/noice/util/call.lua:149: in function 'safe_handle'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:83: in function 'ui_attach_cb'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:112: in function 'process'
+^I.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:135: in function <.../.local/share/nvim/lazy/noice.nvim/lua/noice/ui/init.lua:118>

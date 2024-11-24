@@ -135,8 +135,149 @@ M.ui = {
 
 
 }
+--- search wiki
+M.WikiSearch = function(path,callback)
+    -- 使用 Telescope 的 find_files 函数搜索文件
+    require('telescope.builtin').find_files({
+      cwd = path,  -- 设置工作目录为指定路径
+      prompt_title = "find link",  -- 设置提示框的标题
+      attach_mappings = function(_, map)
+        -- 当选择文件并按回车时，获取选中的文件
+        map({'i','n'}, '<CR>', function(prompt_bufnr)
+          -- 统一成normal模式
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'n', true)
+          local action_state = require('telescope.actions.state')
+          local actions = require('telescope.actions')
+          -- 获取当前选中的条目（文件）
+          local entry = action_state.get_selected_entry()
+          -- 调用回调函数，将选中的文件传递给它
+          actions.close(prompt_bufnr)  -- 关闭 Telescope 窗口 --必须先关闭窗口,不然会写到窗口中
+          callback(entry.value)
+        end)
+        return true
+      end,
+    })
+end
 
+M.WikiInsertLink = function()
+  -- 传递一个回调函数来处理选择的文件
+  M.WikiSearch("~/wiki/", function(selected_file)
+    if selected_file then
+      local luasnip = require("luasnip")
+      local snippet = luasnip.parser.parse_snippet("link", "[$1](" .. selected_file .. ")$2")
+      luasnip.snip_expand(snippet)
+      vim.schedule(function()
+        --模拟输入 a进入 Insert 模式
+        vim.api.nvim_feedkeys("a", "n", true)
+      end)
+    else
+      print("No file selected!")
+    end
+  end)
+end
 
+M.Journal = {
+  date = os.date("%Y-%m-%d"),
+  filepath = vim.fn.expand("~/wiki/" .. os.date("%Y-%m-%d") .. ".md"), -- 直接使用 os.date 来构建 filepath
+  toggle = function()
+    local file_path = M.Journal.filepath  -- 使用 M.Journal.filepath 代替 file_path
+    local date = M.Journal.date           -- 使用 M.Journal.date 来获取当前日期
 
+    -- 如果文件存在
+    if vim.fn.filereadable(file_path) == 1 then
+      vim.cmd("e " .. file_path)  -- 打开文件
+    else
+      -- 创建文件并把 date 写入标题
+      vim.cmd('silent !echo "\\# ' .. date .. '" > ' .. file_path)
+      vim.cmd("e " .. file_path)  -- 打开文件
+    end
+  end,
+}
+
+M.PythonRun = {
+  -- 这里不需要手动加 \n，直接写多行字符串即可
+  header = [[
+import os
+import numpy as np
+import scipy as sp
+import pandas as pd
+import matplotlib.pyplot as plt
+  ]],
+  temp_file = "~/.config/nvim/temp/temp.py",
+  -- 获取 Visual 模式下的选中文本
+  get_visual_selection = function()
+    vim.cmd('normal! y')  -- 执行复制命令
+    local selected_text = vim.fn.getreg('"')  -- 获取 Visual 模式下的选中文本
+    local temp_file = vim.fn.expand(M.PythonRun.temp_file)
+
+    -- 将 header 和选中的文本合并，header 作为第一行
+    local lines = vim.fn.split(M.PythonRun.header, "\n")  -- 将 header 拆成行
+    local selected_lines = vim.fn.split(selected_text, "\n")  -- 将选中的文本拆成行
+
+    -- 合并 header 和选中的代码
+    vim.fn.writefile(vim.list_extend(lines, selected_lines), temp_file)
+  end,
+
+  -- 获取 Normal 模式下的代码块
+  get_code_block = function()
+    -- 获取当前行号
+    local current_line = vim.fn.line('.')
+    -- 查找上一个 ```python 
+    local start_line = vim.fn.search('```python', 'b')
+    -- 查找下一个 ```
+    local end_line = vim.fn.search('```', 'n')
+    -- 获取从 start_line 到 end_line 之间的内容
+    local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line - 1, false)
+    -- 将 header 和代码块合并
+    local header_lines = vim.fn.split(M.PythonRun.header, "\n")
+    vim.fn.writefile(vim.list_extend(header_lines, lines), vim.fn.expand(M.PythonRun.temp_file))
+  end,
+
+  -- 执行代码块
+  Run = function() 
+    local mode = vim.fn.mode()
+    print("Mode: " .. mode)
+    -- 根据模式选择获取选中的文本或代码块
+    if mode == "v" or mode == "V" then
+      M.PythonRun.get_visual_selection()
+    elseif mode == "n" then
+      M.PythonRun.get_code_block()
+    else
+      print("Unsupported mode.")
+      return
+    end
+
+    local temp_file = vim.fn.expand(M.PythonRun.temp_file)
+    -- 执行 Python 脚本并获取输出
+    local output = vim.fn.systemlist("python3 " .. temp_file)
+    -- 找到文件中的 ` ```python` 和 ` ````
+    local start_line = vim.fn.search('```python', 'n') -- 查找向下的 ` ```python`
+    local end_line = vim.fn.search('```', 'n') -- 查找向下的 ` ````
+  
+    -- 如果找到了代码块的开始和结束位置
+    if start_line ~= 0 and end_line ~= 0 then
+      -- 确定插入位置：结束标记行的下一行
+      local insert_line = end_line
+      -- 格式化输出
+      local formatted_output = {"*Results:*"}
+      if #output == 0 then
+        table.insert(formatted_output, "No output.")
+      elseif #output == 1 then
+        formatted_output = {"*Results(selected):* `" .. output[1] .. "`"}
+      else
+        table.insert(formatted_output, "```")
+        for _, line in ipairs(output) do
+          table.insert(formatted_output, line)
+        end
+        table.insert(formatted_output, "```")
+      end
+      -- 在代码块后插入结果
+      vim.api.nvim_buf_set_lines(0, insert_line, insert_line, false, formatted_output)
+    else
+      print("No code block found.")
+    end
+  end
+
+}
 
 return M

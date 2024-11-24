@@ -32,11 +32,11 @@ map("n", "<D-s>", "<ESC>:w<CR>", { desc = "Save" , noremap = true, silent = true
 map("n", "<D-S-w>", "<CMD>tabclose<CR>", { desc = "Close tab" })
 map("n", "<D-S-t>", "<CMD>tabnew<CR>", { desc = "New tab" })
 
--- for i = 1, 9, 1 do
---   map("n", string.format("<D-%s>", i), function()
---     vim.api.nvim_set_current_buf(vim.t.bufs[i])
---   end, { desc = string.format("Switch to tab %d", i) })
--- end
+for i = 1, 9, 1 do
+  map("n", string.format("<D-%s>", i), function()
+    vim.api.nvim_set_current_buf(vim.t.bufs[i])
+  end, { desc = string.format("Switch to tab %d", i) })
+end
 
 map("n", "<D-]>", "<CMD>lua require('nvchad.tabufline').next()<CR>", { desc = "Next buffer" })
 map("n", "<D-[>", "<CMD>lua require('nvchad.tabufline').prev()<CR>", { desc = "Previous buffer" })
@@ -60,10 +60,10 @@ map({"n"}, "H", "^", {desc = "Move to start of line" , noremap = true, silent = 
 map("n", "<leader>mp", "<CMD>call mdip#MarkdownClipboardImage()<CR>", { desc = "Paste image from clipboard" })
 
 -- 文件搜索等
-map("n", "<D-F>", "<CMD>Telescope live_grep<CR>",{noremap = true,silent = true, desc = "Live grep"})
+-- map("n", "<D-F>", "<CMD>Telescope live_grep<CR>",{noremap = true,silent = true, desc = "Live grep"})
 map("n", "<D-e>", "<CMD>Telescope buffers<CR>", { desc = "List buffers" })
 map("n", "<D-o>", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<D-f>", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
+-- map("n", "<D-f>", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
 
 -- 取消搜索高亮
 map("n", "//", "<CMD>nohl<CR>", { desc = "Clear search highlight" })
@@ -269,10 +269,6 @@ vim.api.nvim_create_user_command('Today', function()
 end, { desc = "Open today's journal" })
 
 -- 快捷键
-map("n", "<leader>ww", "<CMD>Today<CR>", { noremap = true, silent = true, desc = "Open today's journal" })
-map("n", "<leader>ws", "<CMD>lua require('telescope.builtin').find_files({cwd = '~/wiki/'})<CR>", { desc = "Search wiki" })
-map("n", "<leader>wS", "<CMD>lua require('telescope.builtin').live_grep({cwd = '~/wiki/'})<CR>", { desc = "search wiki content" })
-map("n", "<leader><CR>", "<CMD>lua require 'mdeval'.eval_code_block()<CR>", {desc = "run code"})
 -- map("i", "<C-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>")
 -- map("i", "<C-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>")
 
@@ -290,5 +286,4 @@ map("n", "<F8>", "", {
   end,
   desc = "File type-specific action"
 })
-
 
