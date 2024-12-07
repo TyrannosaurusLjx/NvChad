@@ -319,7 +319,7 @@ return{
       local presets = require("markview.presets").headings;
       require("markview").setup({
         hybrid_modes = { "n", "i"}, -- 光标到这里就会变成源代码
-        modes = {"i", "n"},
+        modes = { "n"},
 
         -- 标题
         -- https://github.com/OXY2DEV/markview.nvim/wiki/Headings

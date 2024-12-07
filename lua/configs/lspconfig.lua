@@ -58,3 +58,16 @@ lspconfig['ltex'].setup {
   -- 例如：只对 `text`, `latex`, `bibtex` 文件启用 `ltex`
   -- filetypes = { "text", "latex", "bibtex" },
 }
+
+lspconfig['lua_ls'].setup{
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }, -- 将 'vim' 标记为全局变量
+      },
+    }
+  }
+}

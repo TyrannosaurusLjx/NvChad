@@ -2,6 +2,8 @@ return{
     {
         'jakewvincent/mkdnflow.nvim',
         ft = {"markdown", "md", "rmd"},
+        -- enabled = false,
+        filetypes = { markdown = true, md = true, rmd = true },
         config = function()
             -- ** DEFAULT SETTINGS; TO USE THESE, PASS NO ARGUMENTS TO THE SETUP FUNCTION **
             require('mkdnflow').setup({
@@ -107,7 +109,7 @@ return{
                     bib = { override = false }
                 },
                 mappings = {
-                    MkdnEnter = {{'n', 'v'}, '<CR>'},
+                    MkdnEnter = {{'n', 'v'}, '<C-CR>'},
                     MkdnTab = false,
                     MkdnSTab = false,
                     MkdnNextLink = {'n', 'nl'},
@@ -123,7 +125,7 @@ return{
                     -- MkdnTagSpan = {'v', '<M-CR>'},
                     MkdnMoveSource = {'n', '<leader>e'},
                     MkdnYankAnchorLink = {'n', 'yaa'},
-                    MkdnYankFileAnchorLink = {'n', 'yfa'},
+                    MkdnYankFileAnchorLink = {'n', '<c-y>'},
                     MkdnIncreaseHeading = {'n', '+'},
                     MkdnDecreaseHeading = {'n', '-'},
                     MkdnToggleToDo = {{'n', 'v'}, '<D-space>'},

@@ -110,7 +110,7 @@ M.ui = {
         keep_insert = true,
         -- Highlight group used for the path in the picker, default is "String"
         path_hl = "String"
-      }
+      },
     }
 
   },
@@ -130,10 +130,7 @@ M.ui = {
         return "hi"
       end
     }
-
   }
-
-
 }
 --- search wiki
 M.WikiSearch = function(path,callback)
@@ -176,20 +173,52 @@ M.WikiInsertLink = function()
   end)
 end
 
-M.Journal = {
-  date = os.date("%Y-%m-%d"),
-  filepath = vim.fn.expand("~/wiki/" .. os.date("%Y-%m-%d") .. ".md"), -- 直接使用 os.date 来构建 filepath
-  toggle = function()
-    local file_path = M.Journal.filepath  -- 使用 M.Journal.filepath 代替 file_path
-    local date = M.Journal.date           -- 使用 M.Journal.date 来获取当前日期
-
-    -- 如果文件存在
-    if vim.fn.filereadable(file_path) == 1 then
-      vim.cmd("e " .. file_path)  -- 打开文件
+M.WikiCapture = function()
+  --创建一个 telescope 窗口搜索 wiki 文件
+  --如果 telescope 返回了文件就直接编辑,不然就新建
+  M.WikiSearch("~/wiki/", function(selected_file)
+    if selected_file then
+      vim.cmd("e " .. selected_file)
     else
-      -- 创建文件并把 date 写入标题
-      vim.cmd('silent !echo "\\# ' .. date .. '" > ' .. file_path)
-      vim.cmd("e " .. file_path)  -- 打开文件
+      -- 获取当前时间戳
+      local current_time = os.time()
+      -- 格式化日期为字符串
+      local date = os.date("%Y-%m-%d", current_time)
+      -- 构造文件路径
+      local file_path = vim.fn.expand("~/wiki/" .. date .. ".md")
+      -- 创建文件并写入标题
+      vim.fn.system("echo '# " .. date .. "' > " .. file_path)
+      vim.cmd("e " .. file_path) -- 打开文件
+    end
+  end)
+end
+
+M.TODO = {
+  toggle = function()
+    local file = "~/wiki/TODO.md"
+    vim.cmd("edit " .. file)
+  end
+}
+
+
+M.Journal = {
+  toggle = function(n)
+    -- 获取当前时间戳
+    local current_time = os.time()
+    -- 根据 n 的值计算目标日期的时间戳
+    local target_time = current_time + (n * 24 * 60 * 60)
+    -- 格式化日期为字符串
+    local date = os.date("%Y-%m-%d", target_time)
+    -- 构造文件路径
+    local file_path = vim.fn.expand("~/wiki/" .. date .. ".md")
+
+    -- 检查文件是否存在
+    if vim.fn.filereadable(file_path) == 1 then
+      vim.cmd("e " .. file_path) -- 打开文件
+    else
+      -- 创建文件并写入标题
+      vim.fn.system("echo '# " .. date .. "' > " .. file_path)
+      vim.cmd("e " .. file_path) -- 打开文件
     end
   end,
 }
@@ -259,18 +288,15 @@ import matplotlib.pyplot as plt
       -- 确定插入位置：结束标记行的下一行
       local insert_line = end_line
       -- 格式化输出
-      local formatted_output = {"*Results:*"}
+      local formatted_output = {"```output:"}
       if #output == 0 then
         table.insert(formatted_output, "No output.")
-      elseif #output == 1 then
-        formatted_output = {"*Results(selected):* `" .. output[1] .. "`"}
       else
-        table.insert(formatted_output, "```")
         for _, line in ipairs(output) do
           table.insert(formatted_output, line)
         end
-        table.insert(formatted_output, "```")
       end
+      table.insert(formatted_output, "```")
       -- 在代码块后插入结果
       vim.api.nvim_buf_set_lines(0, insert_line, insert_line, false, formatted_output)
     else
@@ -279,5 +305,10 @@ import matplotlib.pyplot as plt
   end
 
 }
+
+
+
+
+
 
 return M

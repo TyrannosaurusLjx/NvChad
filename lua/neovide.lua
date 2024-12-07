@@ -121,11 +121,6 @@ map("n", "<d-up>", "<C-w>+", { desc = "Move window up" })
 map("n", "<d-down>", "<C-w>-", { desc = "Move window down" })
 
 
---终端
-map("n", "<D-t>", function()
-  vim.cmd("edit ~/wiki/capture.md")
-end, { desc = "open capture.md" })
-
 map("n", "<C-`>", function()
   require("nvchad.term").toggle { pos = "sp" , size = 0.25 }
 end, { desc = "Create horizon Terminal" })
@@ -257,22 +252,22 @@ end, { desc = "Open context menu" })
 -- end, { desc = "Open file or link" })
 
 -- 创建并打开当天的 journal
-vim.api.nvim_create_user_command('Today', function()
-  local today = os.date("%Y-%m-%d")
-  local filepath = vim.fn.expand("~/wiki/" .. today .. ".md")
-  if vim.fn.filereadable(filepath) == 0 then
-    vim.cmd('silent !echo "\\# ' .. today .. '" > ' .. filepath)
-    vim.cmd('silent !echo "\\#\\# " .. "TODO" >> ' .. filepath)
-  end
+-- vim.api.nvim_create_user_command('Today', function()
+--   local today = os.date("%Y-%m-%d")
+--   local filepath = vim.fn.expand("~/wiki/" .. today .. ".md")
+--   if vim.fn.filereadable(filepath) == 0 then
+--     vim.cmd('silent !echo "\\# ' .. today .. '" > ' .. filepath)
+--     -- vim.cmd('silent !echo "\\#\\# " .. "TODO" >> ' .. filepath)
+--   end
 
-  vim.cmd('edit ' .. filepath)
-end, { desc = "Open today's journal" })
+--   vim.cmd('edit ' .. filepath)
+-- end, { desc = "Open today's journal" })
 
 -- 快捷键
 -- map("i", "<C-a>", "<CMD>lua require('copilot.suggestion').accept_line()<CR>")
 -- map("i", "<C-w>", "<CMD>lua require('copilot.suggestion').accept_word()<CR>")
 
-map("n", "<F8>", "", {
+map("n", "<F9>", "", {
   noremap = true,
   silent = true,
   callback = function()
@@ -280,6 +275,8 @@ map("n", "<F8>", "", {
       vim.cmd("MarkdownPreview")
     elseif vim.bo.filetype == "tex" then
       vim.cmd("silent !xelatex % &")
+    elseif vim.bo.filetype == "lua" or vim.bo.filetype == "luale type" then
+      vim.cmd("luafile %")
     else
       print("Unsupported file type")
     end
@@ -287,3 +284,4 @@ map("n", "<F8>", "", {
   desc = "File type-specific action"
 })
 
+map("n", "<F10>", "<Plug>PlenaryTestFile<CR>", { desc = "Open TODO" })

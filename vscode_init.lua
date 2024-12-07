@@ -63,21 +63,21 @@ require("lazy").setup({
     event = "VeryLazy",
     opts = {},
   },
-  {
-    "rainzm/flash-zh.nvim",
-    event = "VeryLazy",
-    dependencies = "folke/flash.nvim",
-    keys = {{
-        "s",
-        mode = {"n", "x", "o"},
-        function()
-            require("flash-zh").jump({
-                chinese_only = false
-            })
-        end,
-        desc = "Flash between Chinese"
-    }}
-  },
+  -- {
+  --   "rainzm/flash-zh.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = "folke/flash.nvim",
+  --   keys = {{
+  --       "s",
+  --       mode = {"n", "x", "o"},
+  --       function()
+  --           require("flash-zh").jump({
+  --               chinese_only = false
+  --           })
+  --       end,
+  --       desc = "Flash between Chinese"
+  --   }}
+  -- },
 --
 
 
