@@ -10,6 +10,5 @@ return{
       config = function ()
         require"nvimwiki".setup()
       end
-
 }
 }
