@@ -222,3 +222,11 @@ end
 
 map("n", "<C-h>", "<CMD>lua require'nvimwiki.utils'.goto_prev()<CR>", { noremap = true })
 map("n", "<C-l>", "<CMD>lua require'nvimwiki.utils'.goto_next()<CR>", { noremap = true })
+map("n", "<leader>ms", function ()
+  local messages = vim.api.nvim_exec("messages", true)
+  local file = io.open(vim.fn.expand("~/.config/nvim/temp/messages.txt"), "w")
+  file:write(messages)
+  file:close()
+  vim.notify("Messages saved to messages.txt")
+  vim.cmd("edit ~/.config/nvim/temp/messages.txt")
+end)
