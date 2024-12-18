@@ -16,4 +16,23 @@ M.base46 = {
 	-- },
 }
 
+
+M.ui = {
+  cmp = {
+    icons_left = true, -- only for non-atom styles!
+    style = "atom", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = true, -- will work for css lsp too
+      icon = "󱓻",
+    },
+  },
+  tabufline = {
+    enabled = false,
+  },
+  statusline = {
+    theme = "default",
+    separator_style = "arrow",
+  }
+}
+
 return M

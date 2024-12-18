@@ -28,3 +28,4 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
   pattern = "[/\\?]",
   callback = set_ime,
 })
+

@@ -1,5 +1,4 @@
 require "nvchad.mappings"
-
 -- add yours here
 
 local map = vim.keymap.set
@@ -22,7 +21,7 @@ map({ "i", "c" }, "<D-l>", "<right>", { desc = "Move right" })
 
 -- jump to mappings
 map("n", "<D-,>", "<CMD>edit ~/.config/nvim/lua/mappings.lua<CR>", { desc = "jump to mappings" })
-map("n", "?", "<CMD>lua require'telescope.builtin'.help_tags()<CR>")
+map("n", "<leader>ft", "<CMD>lua require'telescope.builtin'.help_tags()<CR>")
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
@@ -70,10 +69,12 @@ map("n", "<leader>mp", "<CMD>call mdip#MarkdownClipboardImage()<CR>", { desc = "
 
 -- 文件搜索等
 -- map("n", "<D-F>", "<CMD>Telescope live_grep<CR>",{noremap = true,silent = true, desc = "Live grep"})
-map("n", "<D-e>", "<CMD>Telescope buffers<CR>", { desc = "List buffers" })
+map("n", "<D-b>", "<CMD>Telescope buffers<CR>", { desc = "List buffers" })
+map("n", "<D-e>", "<CMD>Telescope find_files<CR>", { desc = "File browser" })
 map("n", "<D-o>", "<CMD>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<D-E>", "<CMD>NvimTreeToggle<CR>")
--- map("n", "<D-f>", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find in current buffer" })
+map("n", "<D-E>", "<CMD>Neotree filesystem position=left<CR>", { desc = "Toggle Neotree"})
+map("n", "<D-B>", "<CMD>Neotree buffers position=right<CR>", { desc = "Toggle buffers Neotree" })
+map("n", "<leader>e", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neotree"})
 
 -- 匹配
 map("i", "<D-n>", "<C-p>", { desc = "Autocomplete previous" })
@@ -225,8 +226,61 @@ map("n", "<C-l>", "<CMD>lua require'nvimwiki.utils'.goto_next()<CR>", { noremap 
 map("n", "<leader>ms", function ()
   local messages = vim.api.nvim_exec("messages", true)
   local file = io.open(vim.fn.expand("~/.config/nvim/temp/messages.txt"), "w")
+  if not file then
+    vim.notify("Failed to open messages.txt")
+    return
+  end
   file:write(messages)
   file:close()
   vim.notify("Messages saved to messages.txt")
   vim.cmd("edit ~/.config/nvim/temp/messages.txt")
 end)
+
+--------------
+local ts_select = require'nvim-treesitter.textobjects.select'
+local ts_swap = require'nvim-treesitter.textobjects.swap'
+local ts_repeat_move = require'nvim-treesitter.textobjects.repeatable_move'
+
+-- 文本对象选择映射
+map({ "x", "o" }, "af", function() ts_select.select_textobject("@function.outer") end)
+map({ "x", "o" }, "if", function() ts_select.select_textobject("@function.inner") end)
+map({ "x", "o" }, "ac", function() ts_select.select_textobject("@class.outer") end)
+map({ "x", "o" }, "ic", function() ts_select.select_textobject("@class.inner") end)
+map({ "x", "o" }, "as", function() ts_select.select_textobject("@local.scope") end)
+map("n", "<leader>a", function() ts_swap.swap_next("@parameter.inner") end)
+map("n", "<leader>A", function() ts_swap.swap_previous("@parameter.inner") end)
+map({ "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+map({ "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+map({ "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+map({ "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+-----------
+
+------------ copilot-chat
+map({"n","v"}, "<leader>co", "<CMD>CopilotChatOpen<CR>", { desc = "Open Copilot Chat" })
+map({"n","v"}, "<leader>cc", "<CMD>CopilotChatClose<CR>", { desc = "Close Copilot Chat" })
+map({"n","v"}, "<leader>ct", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Copilot Chat" })
+map({"n","v"}, "<leader>cs", "<CMD>CopilotChatStop<CR>", { desc = "Stop Copilot Chat" })
+map({"n","v"}, "<leader>cr", "<CMD>CopilotChatReset<CR>", { desc = "Reset Copilot Chat" })
+map({"n","v"}, "<leader>cfs", "<CMD>CopilotChatSave default<CR>", {desc = "save copilot chat"} )
+map({"n","v"}, "<leader>cfo", "<CMD>CopilotChatLoad default<CR>", {desc = "open copilot chat file"} )
+-------------
+
+
+------------search config file
+map("n", "<leader>fc", "<CMD>lua require'telescope.builtin'.find_files({cwd = '~/.config/nvim'})<CR>", { desc = "Find files in nvim config" })
+-----------
+
+
+------------persistence
+-- load the session for the current directory
+map("n", "<leader>qs", function() require("persistence").load() end)
+
+-- select a session to load
+map("n", "<D-R>", function() require("persistence").select() end)
+
+-- load the last session
+map("n", "<leader>ql", function() require("persistence").load({ last = true }) end)
+
+-- stop Persistence => session won't be saved on exit
+map("n", "<leader>qd", function() require("persistence").stop() end)
+---------------

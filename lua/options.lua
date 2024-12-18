@@ -18,3 +18,7 @@ vim.g.sonokai_style = "maia"
 vim.g.neovide_cursor_animation_length = 0.01
 
 vim.g.neovide_cursor_trail_size = 0.1
+
+vim.opt.clipboard = "unnamedplus"
+
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

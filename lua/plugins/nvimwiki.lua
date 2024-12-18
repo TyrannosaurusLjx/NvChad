@@ -1,7 +1,6 @@
 return {
   {
     dir = "~/nvimwiki",
-    -- lazy = true,
     ft = { "markdown", "md", },
     dependencies = {
       "nvim-lua/plenary.nvim", -- 声明依赖 plenary.nvim
