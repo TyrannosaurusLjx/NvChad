@@ -1,1 +1,131 @@
-[lspconfig] config "python-lsp-server" not found. Ensure it is listed in `configs.md` or added as a custom server.
+2 行发生改变；before #2  2 秒前
+E490: 找不到折叠
+"~/wiki/20241219000000.md" [新] 14L, 179B 已写入
+E518: 未知的选项: Nerd\\ 
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 14.0,
+    width: 0.0,
+    hinting: Full,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Full, edging: AntiAlias }
+
+E518: 未知的选项: Nerd 
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 14.0,
+    width: 0.0,
+    hinting: Full,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Full, edging: AntiAlias }
+
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 17.0,
+    width: 0.0,
+    hinting: Slight,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Slight, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Slight, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Slight, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Slight, edging: AntiAlias }
+
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 17.0,
+    width: 0.0,
+    hinting: Full,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Full, edging: AntiAlias }
+
+E518: 未知的选项: Nerd 
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 14.0,
+    width: 0.0,
+    hinting: Full,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Full, edging: AntiAlias }
+
+Error: Font can't be updated to: FontOptions {
+    normal: [
+        FontDescription {
+            family: "Hack",
+            style: None,
+        },
+    ],
+    italic: None,
+    bold: None,
+    bold_italic: None,
+    features: {},
+    size: 17.0,
+    width: 0.0,
+    hinting: Full,
+    edging: AntiAlias,
+}
+Following fonts couldn't be loaded: FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Bold") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: Some("Italic") }), hinting: Full, edging: AntiAlias },
+FontKey { font_desc: Some(FontDescription { family: "Hack", style: None }), hinting: Full, edging: AntiAlias }

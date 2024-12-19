@@ -43,9 +43,9 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
-map("n", "<D-w>", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
+-- map("n", "<D-w>", function()
+--   require("nvchad.tabufline").close_buffer()
+-- end, { desc = "buffer close" })
 
 map("n", "<D-S-w>", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 map("i", "<D-s>", "<ESC>:w<CR>", { desc = "Save", noremap = true, silent = true })
@@ -284,3 +284,12 @@ map("n", "<leader>ql", function() require("persistence").load({ last = true }) e
 -- stop Persistence => session won't be saved on exit
 map("n", "<leader>qd", function() require("persistence").stop() end)
 ---------------
+
+
+-------------dial
+map("n", "+", function()
+    require("dial.map").manipulate("increment", "normal")
+end)
+map("n", "-", function()
+    require("dial.map").manipulate("decrement", "normal")
+end)

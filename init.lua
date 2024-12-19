@@ -41,3 +41,5 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.cmd("set guifont=Hack_Nerd_Font_Mono:h17:#h-slight")
