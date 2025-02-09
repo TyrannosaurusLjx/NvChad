@@ -1,25 +1,4 @@
 {
-    "Inline Math": {
-        "prefix": "m",
-        "body": [" $${1}$ ${2}"],
-        "description": "Insert math block"
-    },
-    "Outline Math": {
-        "prefix": "M",
-        "body": ["$$\n${1}\n$$ ${2}"],
-        "description": "Insert math block"
-    },
-
-    "inline Math": {
-        "prefix": "$",
-        "body": [" $${1}$ ${2}"],
-        "description": "Insert math block"
-    },
-    "outline Math": {
-        "prefix": "$$",
-        "body": ["$$\n${1}\n$$ ${2}"],
-        "description": "Insert math block"
-    },
     "scr" : {
         "prefix": "scr",
         "body": ["\\mathscr{{1}}$ ${2}"],
@@ -27,7 +6,7 @@
     },
     "bb" : {
         "prefix": "bb",
-        "body": ["\\mathbb{{1}}$ ${2}"],
+        "body": ["\\mathbb{${1}}${2}"],
         "description": "Insert mathbb"
     },
     "sum" : {
@@ -101,7 +80,7 @@
         "description": "Insert bold text"
     },
     "Insert italic text": {
-        "prefix": ["i", "italic"],
+        "prefix": ["ii", "italic"],
         "body": "*${1}* $0",
         "description": "Insert italic text"
     },
@@ -466,5 +445,105 @@
         "\\end{cases}"
       ],
       "description": "Insert cases"
+    },
+    "frac": {
+      "prefix": "fr",
+      "body": [
+      "\\frac{$1}{$2} ${3}"
+      ],
+      "description": "Insert fraction"
+    },
+    "set": {
+      "prefix" : "set",
+      "body" : [
+       "\\{${1:element1}\\\\} ${6}"
+      ]
+    },
+    "matrix": {
+      "prefix": "mat",
+      "body": [
+        "\\begin{bmatrix}",
+        "  ${1} & ${2} ",
+        "\\end{bmatrix}"
+      ],
+      "description": "Insert matrix"
+    },
+    "to" : {
+      "prefix" : "to",
+      "body" : "\\to",
+      "description" : "Insert to"
+    },
+    "mapto" : {
+      "prefix" : "->",
+      "body" : "\\mapsto",
+      "description" : "Insert mapto"
+    },
+    "lambda" : {
+      "prefix" : "lam",
+      "body" : "\\lambda",
+      "description" : "Insert lambda"
+    },
+    "align" : {
+      "prefix" : "align",
+      "body" : [
+        "\\begin{align*}",
+        " $1 ",
+        "\\end{align*}"
+      ]
+    },
+    "that is" : {
+      "prefix" : "ie",
+      "body" : "\\text{i.e.} ${1}",
+      "description" : "Insert i.e."
+    },
+    "proof" : {
+      "prefix" :"proof",
+      "body" : "***PROOF***: ",
+      "description" : "Proof Env"
+    },
+    "python": {
+      "prefix": "python",
+      "body": [
+        "```python",
+        "$1",
+        "```"
+      ],
+      "description": "Python code block"
+    },
+    "javascript": {
+      "prefix": ["js", "javascript"],
+      "body": [
+        "```javascript",
+        "$1",
+        "```"
+      ],
+      "description": "JavaScript code block"
+    },
+    "typescript": {
+      "prefix": ["ts", "typescript"],
+      "body": [
+        "```typescript",
+        "$1",
+        "```"
+      ],
+      "description": "TypeScript code block"
+    },
+    "css": {
+      "prefix": "css",
+      "body": [
+        "```css",
+        "$1",
+        "```"
+      ],
+      "description": "CSS code block"
+    },
+    "markdown": {
+      "prefix": "md",
+      "body": [
+        "```markdown",
+        "$1",
+        "```"
+      ],
+      "description": "Markdown code block"
     }
 }

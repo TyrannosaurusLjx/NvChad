@@ -1,0 +1,469 @@
+{
+  "click": {
+    "prefix": "click",
+    "body": [
+      "@click=\"$1\""
+    ],
+    "description": "click event"
+  },
+  "dblclick": {
+    "prefix": "dblclick",
+    "body": [
+      "@dblclick=\"$1\""
+    ],
+    "description": "dblclick event"
+  },
+  "mousedown": {
+    "prefix": "mousedown",
+    "body": [
+      "@mousedown=\"$1\""
+    ],
+    "description": "mousedown event"
+  },
+  "mouseup": {
+    "prefix": "mouseup",
+    "body": [
+      "@mouseup=\"$1\""
+    ],
+    "description": "mouseup event"
+  },
+  "mousemove": {
+    "prefix": "mousemove",
+    "body": [
+      "@mousemove=\"$1\""
+    ],
+    "description": "mousemove event"
+  },
+  "mouseenter": {
+    "prefix": "mouseenter",
+    "body": [
+      "@mouseenter=\"$1\""
+    ],
+    "description": "mouseenter event"
+  },
+  "mouseleave": {
+    "prefix": "mouseleave",
+    "body": [
+      "@mouseleave=\"$1\""
+    ],
+    "description": "mouseleave event"
+  },
+  "mouseover": {
+    "prefix": "mouseover",
+    "body": [
+      "@mouseover=\"$1\""
+    ],
+    "description": "mouseover event"
+  },
+  "mouseout": {
+    "prefix": "mouseout",
+    "body": [
+      "@mouseout=\"$1\""
+    ],
+    "description": "mouseout event"
+  },
+  "contextmenu": {
+    "prefix": "contextmenu",
+    "body": [
+      "@contextmenu=\"$1\""
+    ],
+    "description": "contextmenu event"
+  },
+  "keydown": {
+    "prefix": "keydown",
+    "body": [
+      "@keydown=\"$1\""
+    ],
+    "description": "keydown event"
+  },
+  "keypress": {
+    "prefix": "keypress",
+    "body": [
+      "@keypress=\"$1\""
+    ],
+    "description": "keypress event"
+  },
+  "keyup": {
+    "prefix": "keyup",
+    "body": [
+      "@keyup=\"$1\""
+    ],
+    "description": "keyup event"
+  },
+  "input": {
+    "prefix": "input",
+    "body": [
+      "@input=\"$1\""
+    ],
+    "description": "input event"
+  },
+  "change": {
+    "prefix": "change",
+    "body": [
+      "@change=\"$1\""
+    ],
+    "description": "change event"
+  },
+  "submit": {
+    "prefix": "submit",
+    "body": [
+      "@submit=\"$1\""
+    ],
+    "description": "submit event"
+  },
+  "focus": {
+    "prefix": "focus",
+    "body": [
+      "@focus=\"$1\""
+    ],
+    "description": "focus event"
+  },
+  "blur": {
+    "prefix": "blur",
+    "body": [
+      "@blur=\"$1\""
+    ],
+    "description": "blur event"
+  },
+  "touchstart": {
+    "prefix": "touchstart",
+    "body": [
+      "@touchstart=\"$1\""
+    ],
+    "description": "touchstart event"
+  },
+  "touchmove": {
+    "prefix": "touchmove",
+    "body": [
+      "@touchmove=\"$1\""
+    ],
+    "description": "touchmove event"
+  },
+  "touchend": {
+    "prefix": "touchend",
+    "body": [
+      "@touchend=\"$1\""
+    ],
+    "description": "touchend event"
+  },
+  "touchcancel": {
+    "prefix": "touchcancel",
+    "body": [
+      "@touchcancel=\"$1\""
+    ],
+    "description": "touchcancel event"
+  },
+  "scroll": {
+    "prefix": "scroll",
+    "body": [
+      "@scroll=\"$1\""
+    ],
+    "description": "scroll event"
+  },
+  "dragstart": {
+    "prefix": "dragstart",
+    "body": [
+      "@dragstart=\"$1\""
+    ],
+    "description": "dragstart event"
+  },
+  "drag": {
+    "prefix": "drag",
+    "body": [
+      "@drag=\"$1\""
+    ],
+    "description": "drag event"
+  },
+  "dragend": {
+    "prefix": "dragend",
+    "body": [
+      "@dragend=\"$1\""
+    ],
+    "description": "dragend event"
+  },
+  "dragenter": {
+    "prefix": "dragenter",
+    "body": [
+      "@dragenter=\"$1\""
+    ],
+    "description": "dragenter event"
+  },
+  "dragleave": {
+    "prefix": "dragleave",
+    "body": [
+      "@dragleave=\"$1\""
+    ],
+    "description": "dragleave event"
+  },
+  "dragover": {
+    "prefix": "dragover",
+    "body": [
+      "@dragover=\"$1\""
+    ],
+    "description": "dragover event"
+  },
+  "drop": {
+    "prefix": "drop",
+    "body": [
+      "@drop=\"$1\""
+    ],
+    "description": "drop event"
+  },
+  "copy": {
+    "prefix": "copy",
+    "body": [
+      "@copy=\"$1\""
+    ],
+    "description": "copy event"
+  },
+  "cut": {
+    "prefix": "cut",
+    "body": [
+      "@cut=\"$1\""
+    ],
+    "description": "cut event"
+  },
+  "paste": {
+    "prefix": "paste",
+    "body": [
+      "@paste=\"$1\""
+    ],
+    "description": "paste event"
+  },
+  "play": {
+    "prefix": "play",
+    "body": [
+      "@play=\"$1\""
+    ],
+    "description": "play event"
+  },
+  "pause": {
+    "prefix": "pause",
+    "body": [
+      "@pause=\"$1\""
+    ],
+    "description": "pause event"
+  },
+  "ended": {
+    "prefix": "ended",
+    "body": [
+      "@ended=\"$1\""
+    ],
+    "description": "ended event"
+  },
+  "volumechange": {
+    "prefix": "volumechange",
+    "body": [
+      "@volumechange=\"$1\""
+    ],
+    "description": "volumechange event"
+  },
+  "timeupdate": {
+    "prefix": "timeupdate",
+    "body": [
+      "@timeupdate=\"$1\""
+    ],
+    "description": "timeupdate event"
+  },
+  "resize": {
+    "prefix": "resize",
+    "body": [
+      "@resize=\"$1\""
+    ],
+    "description": "resize event"
+  },
+  "error": {
+    "prefix": "error",
+    "body": [
+      "@error=\"$1\""
+    ],
+    "description": "error event"
+  },
+  "load": {
+    "prefix": "load",
+    "body": [
+      "@load=\"$1\""
+    ],
+    "description": "load event"
+  },
+
+  "img": {
+    "prefix": "img",
+    "body": [
+      "<img src=\"$1\" alt=\"$2\" @load=\"$3\" @error=\"$4\" />"
+    ],
+    "description": "Image element with events"
+  },
+  "button": {
+    "prefix": "button",
+    "body": [
+      "<button @click=\"$1\">$2</button>"
+    ],
+    "description": "Button element with click event"
+  },
+  "input": {
+    "prefix": "input",
+    "body": [
+      "<input type=\"$1\" v-model=\"$2\" @input=\"$3\" @change=\"$4\" />"
+    ],
+    "description": "Input element with v-model and events"
+  },
+  "textarea": {
+    "prefix": "textarea",
+    "body": [
+      "<textarea v-model=\"$1\" @input=\"$2\" @change=\"$3\">$4</textarea>"
+    ],
+    "description": "Textarea element with v-model and events"
+  },
+  "select": {
+    "prefix": "select",
+    "body": [
+      "<select v-model=\"$1\" @change=\"$2\">",
+      "  <option value=\"$3\">$4</option>",
+      "</select>"
+    ],
+    "description": "Select element with v-model and options"
+  },
+  "a": {
+    "prefix": "a",
+    "body": [
+      "<a href=\"$1\" target=\"$2\" @click=\"$3\">$4</a>"
+    ],
+    "description": "Anchor element with click event"
+  },
+  "form": {
+    "prefix": "form",
+    "body": [
+      "<form @submit.prevent=\"$1\">",
+      "  $2",
+      "</form>"
+    ],
+    "description": "Form element with submit event"
+  },
+  "ul": {
+    "prefix": "ul",
+    "body": [
+      "<ul>",
+      "  <li v-for=\"$1 in $2\" :key=\"$3\">$4</li>",
+      "</ul>"
+    ],
+    "description": "Unordered list with v-for"
+  },
+  "table": {
+    "prefix": "table",
+    "body": [
+      "<table>",
+      "  <thead>",
+      "    <tr>",
+      "      <th>$1</th>",
+      "    </tr>",
+      "  </thead>",
+      "  <tbody>",
+      "    <tr v-for=\"$2 in $3\" :key=\"$4\">",
+      "      <td>$5</td>",
+      "    </tr>",
+      "  </tbody>",
+      "</table>"
+    ],
+    "description": "Table element with v-for"
+  },
+  "video": {
+    "prefix": "video",
+    "body": [
+      "<video src=\"$1\" controls @play=\"$2\" @pause=\"$3\" @ended=\"$4\"></video>"
+    ],
+    "description": "Video element with events"
+  },
+  "audio": {
+    "prefix": "audio",
+    "body": [
+      "<audio src=\"$1\" controls @play=\"$2\" @pause=\"$3\" @ended=\"$4\"></audio>"
+    ],
+    "description": "Audio element with events"
+  },
+  "div": {
+    "prefix": "div",
+    "body": [
+      "<div @click=\"$1\">$2</div>"
+    ],
+    "description": "Div element with click event"
+  },
+  "span": {
+    "prefix": "span",
+    "body": [
+      "<span @mouseover=\"$1\">$2</span>"
+    ],
+    "description": "Span element with mouseover event"
+  },
+  "label": {
+    "prefix": "label",
+    "body": [
+      "<label for=\"$1\">$2</label>"
+    ],
+    "description": "Label element"
+  },
+  "p": {
+    "prefix": "p",
+    "body": [
+      "<p>$1</p>"
+    ],
+    "description": "Paragraph element"
+  },
+  "h1": {
+    "prefix": "h1",
+    "body": [
+      "<h1>$1</h1>"
+    ],
+    "description": "Header 1 element"
+  },
+  "h2": {
+    "prefix": "h2",
+    "body": [
+      "<h2>$1</h2>"
+    ],
+    "description": "Header 2 element"
+  },
+  "h3": {
+    "prefix": "h3",
+    "body": [
+      "<h3>$1</h3>"
+    ],
+    "description": "Header 3 element"
+  },
+  "h4": {
+    "prefix": "h4",
+    "body": [
+      "<h4>$1</h4>"
+    ],
+    "description": "Header 4 element"
+  },
+  "h5": {
+    "prefix": "h5",
+    "body": [
+      "<h5>$1</h5>"
+    ],
+    "description": "Header 5 element"
+  },
+  "h6": {
+    "prefix": "h6",
+    "body": [
+      "<h6>$1</h6>"
+    ],
+    "description": "Header 6 element"
+  },
+  "progress": {
+    "prefix": "progress",
+    "body": [
+      "<progress value=\"$1\" max=\"$2\"></progress>"
+    ],
+    "description": "Progress element"
+  },
+  "meter": {
+    "prefix": "meter",
+    "body": [
+      "<meter value=\"$1\" min=\"$2\" max=\"$3\"></meter>"
+    ],
+    "description": "Meter element"
+  }
+
+}

@@ -765,5 +765,34 @@
         "body": ["<ol class=\"$1\" id=\"$2\">", "\t$3", "</ol>"],
         "description": "HTML - Defines an ordered list",
         "scope": "text.html"
-    }
+    },
+
+"log": {
+    "prefix": "log",
+    "body": [
+        "console.log($1);"
+    ],
+    "description": "Log output to console"
+},
+"warn": {
+    "prefix": "warn",
+    "body": [
+        "console.warn($1);"
+    ],
+    "description": "Log warning to console"
+},
+"error": {
+    "prefix": "error",
+    "body": [
+        "console.error($1);"
+    ],
+    "description": "Log error to console"
+},
+"table": {
+    "prefix": "table",
+    "body": [
+        "console.table($1);"
+    ],
+    "description": "Log table to console"
+}
 }

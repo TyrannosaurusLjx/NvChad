@@ -26,10 +26,10 @@
 --   },
 -- }
 --
-return{
-  "monaqa/dial.nvim",
-  recommended = true,
-  desc = "Increment and decrement numbers, dates, and more",
+return {
+	"monaqa/dial.nvim",
+	recommended = true,
+	desc = "Increment and decrement numbers, dates, and more",
   -- stylua: ignore
   opts = function()
     local augend = require("dial.augend")
@@ -95,6 +95,15 @@ return{
       cyclic = true,
     })
 
+    local onoff = augend.constant.new({
+      elements = {
+        "on",
+        "off",
+      },
+      word = true,
+      cyclic = true,
+    })
+
     local capitalized_boolean = augend.constant.new({
       elements = {
         "True",
@@ -131,6 +140,7 @@ return{
           capitalized_boolean,
           augend.constant.alias.bool, -- boolean value (true <-> false)
           logical_alias,
+          onoff,
         },
         vue = {
           augend.constant.new({ elements = { "let", "const" } }),
@@ -169,14 +179,14 @@ return{
       },
     }
   end,
-  config = function(_, opts)
-    -- copy defaults to each group
-    for name, group in pairs(opts.groups) do
-      if name ~= "default" then
-        vim.list_extend(group, opts.groups.default)
-      end
-    end
-    require("dial.config").augends:register_group(opts.groups)
-    vim.g.dials_by_ft = opts.dials_by_ft
-  end,
+	config = function(_, opts)
+		-- copy defaults to each group
+		for name, group in pairs(opts.groups) do
+			if name ~= "default" then
+				vim.list_extend(group, opts.groups.default)
+			end
+		end
+		require("dial.config").augends:register_group(opts.groups)
+		vim.g.dials_by_ft = opts.dials_by_ft
+	end,
 }

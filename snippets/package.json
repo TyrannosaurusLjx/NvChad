@@ -584,6 +584,10 @@
                  "language": "loremipsum",
                  "path": "./snippets/loremipsum.json"
             },
+            {
+                "language": "vue",
+                "path": "./snippets/frameworks/vue/extra.json"
+            },
 	    {
 		"language": "cmake",
 		"path": "./snippets/cmake.json"

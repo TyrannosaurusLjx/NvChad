@@ -28,18 +28,13 @@ require("lazy").setup({
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
-
----其他配置
-dofile(vim.g.base46_cache .. "syntax")
-dofile(vim.g.base46_cache .. "treesitter")
 dofile(vim.g.base46_cache .. "markview")
 
 require "options"
 require "nvchad.autocmds"
+require "utils"
 require "autocmds"
 
 vim.schedule(function()
   require "mappings"
 end)
-
-vim.cmd("set guifont=Hack_Nerd_Font_Mono:h17:#h-slight")

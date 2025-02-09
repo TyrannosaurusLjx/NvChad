@@ -1,121 +1,141 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-local suggestion = require("copilot.suggestion")
-local copilot = require("copilot")
-
-local function create_cmp_mapping(key)
-  return cmp.mapping(function(fallback)
-    if cmp.visible() and not cmp.get_selected_entry() then
-      -- 使用 count 来选择相应的提示项
-      cmp.select_next_item()
-      cmp.select_next_item({ count = key - 1 })
-      cmp.confirm({ select = true })
-    else
-      fallback()
-    end
-  end, { "i", "s" })
-end
-
-local cmp_mappings = {}
-for i = 1, 9 do
-  cmp_mappings[i] = create_cmp_mapping(i)
-end
-
-M = {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-      "L3MON4D3/LuaSnip",
-      "copilot.lua",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-buffer",
-      "rasulomaroff/cmp-bufname",
-      "f3fora/cmp-spell",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "nvim-treesitter/nvim-treesitter",
-      "onsails/lspkind.nvim",
-      "hrsh7th/cmp-cmdline",
-    },
-    opts = {
-      preselect = cmp.PreselectMode.None,
-      completion = { completeopt = "menu,menuone,noselect" },
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      sources = cmp.config.sources({
-        { name = "wiki" },
-        { name = "wikitags" },
-        { name = "copilot", group_index = 2 },
-        { name = "luasnip" },
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "bufname" },
-        { name = "path" },
-        { name = "treesitter" },
-        { name = "doxygen" },
-      }),
-      mapping = {
-        ["<CR>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(1) and not cmp.get_selected_entry() then
-            luasnip.jump(1)
-          elseif cmp.visible() and cmp.get_selected_entry() then
-            cmp.confirm({ select = true })
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif suggestion.is_visible() then
-            suggestion.accept_word()
-          elseif luasnip.locally_jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<C-Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          elseif cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          elseif cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        -- 合并 1-9 数字键映射
-        ["<D-1>"] = cmp_mappings[1],
-        ["<D-2>"] = cmp_mappings[2],
-        ["<D-3>"] = cmp_mappings[3],
-        ["<D-4>"] = cmp_mappings[4],
-        ["<D-5>"] = cmp_mappings[5],
-        ["<D-6>"] = cmp_mappings[6],
-        ["<D-7>"] = cmp_mappings[7],
-        ["<D-8>"] = cmp_mappings[8],
-        ["<D-9>"] = cmp_mappings[9],
-
-      },
+local cmdline = {
+  "hrsh7th/cmp-cmdline",
+  event = "CmdlineEnter",
+  config = function()
+    local cmp = require "cmp"
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = { { name = "buffer" } },
       view = {
-        entries = "custom",
+        entries = { name = "wildmenu", separator = "|" },
       },
-    }
-  }
+    })
 
-return M
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      completion = { completeopt = "menu,menuone,noselect" },
+      matching = "ignore_case",
+      sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+    })
+  end,
+}
+
+local cmpconf = {
+  "hrsh7th/nvim-cmp",
+  dependencies = {
+    cmdline,
+    "uga-rosa/cmp-dictionary",
+    "hrsh7th/cmp-emoji",
+    "L3MON4D3/LuaSnip",
+    "copilot.lua",
+    "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-buffer",
+    "rasulomaroff/cmp-bufname",
+    "f3fora/cmp-spell",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-path",
+    "nvim-treesitter/nvim-treesitter",
+    "onsails/lspkind.nvim",
+  },
+  opts = function(_, opts)
+    local lspkind = require "lspkind"
+    local cmp = require "cmp"
+    local luasnip = require "luasnip"
+    local mappings = {
+      ["<CR>"] = cmp.mapping(function(fallback)
+        if cmp.visible() and cmp.get_selected_entry() then
+          cmp.confirm { select = true }
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if luasnip.jumpable(1) then
+          luasnip.jump(1)
+        elseif luasnip.expandable() then
+          luasnip.expand()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<D-j>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<D-k>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<D-l>"] = cmp.mapping(function(fallback)
+        if luasnip.locally_jumpable(1) then
+          luasnip.jump(1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<D-h>"] = cmp.mapping(function(fallback)
+        if luasnip.locally_jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+    }
+
+    -- 添加数字键映射
+    for i = 1, 9 do
+      mappings["<D-" .. i .. ">"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+          cmp.select_next_item { count = i }
+          cmp.confirm { select = true }
+        else
+          fallback()
+        end
+      end, { "i", "s" })
+    end
+
+    -- 补全源配置
+    local sources = {
+      { name = "luasnip" },
+      -- { name = "dictionary", keyword_length = 3 },
+      { name = "wikitest" },
+      {
+        name = "nvim_lsp",
+        priority = 1,
+        group_index = 1,
+        option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } },
+      },
+      { name = "bufname" },
+      { name = "path" },
+      { name = "treesitter" },
+    }
+    --
+    -- local formatting = {
+    --   fields = { "kind", "abbr", "menu" },
+    --   format = function(entry, vim_item)
+    --     local kind = require("lspkind").cmp_format { mode = "symbol_text", maxwidth = 50 }(entry, vim_item)
+    --     local strings = vim.split(kind.kind, "%s", { trimempty = true })
+    --     kind.kind = " " .. (strings[1] or "") .. " "
+    --     kind.menu = "    (" .. (strings[2] or "") .. ")"
+    --     return kind
+    --   end,
+    -- }
+
+    opts.sources = sources
+    opts.mapping = mappings
+    -- opts.formatting = formatting
+  end,
+}
+return cmpconf
