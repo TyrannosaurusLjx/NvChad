@@ -6,8 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvchad",
-
+  theme = "onedark",
   integrations = {
     "markview",
   },
@@ -18,10 +17,29 @@ M.base46 = {
 }
 
 -- M.nvdash = { load_on_startup = true }
+
 M.ui = {
   tabufline = {
-    enabled = false,
+    enabled = true,
+    order = { "neo_tree", "treeOffset", "buffers" },
+    modules = {
+      neo_tree = function()
+        local api = vim.api
+        local strep = string.rep
+        local function getNeoTreeWidth()
+          for _, win in pairs(api.nvim_tabpage_list_wins(0)) do
+            if vim.bo[api.nvim_win_get_buf(win)].ft == "neo-tree" then
+              return api.nvim_win_get_width(win)
+            end
+          end
+          return 0
+        end
+        local w = getNeoTreeWidth()
+        return w == 0 and "" or "%#NeoTreeNormal#" .. strep("=", w) .. "%#NeoTreeWinSeparator#" .. "│"
+      end,
+    },
   },
+
   statusline = {
     enabled = true,
   },

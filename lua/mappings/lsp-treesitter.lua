@@ -1,9 +1,9 @@
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function()
-		go({ severity = severity })
-	end
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go { severity = severity }
+  end
 end
 Keymaps("n", { "<leader>gh", "gh" }, "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover doc" })
 -- map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
@@ -26,33 +26,35 @@ Keymap("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 Keymap("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 Keymap("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
-local ts_select = require("nvim-treesitter.textobjects.select")
-local ts_swap = require("nvim-treesitter.textobjects.swap")
-local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+local ts_select = require "nvim-treesitter.textobjects.select"
+local ts_swap = require "nvim-treesitter.textobjects.swap"
+local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
 
 -- 文本对象选择映射
 Keymap({ "x", "o" }, "af", function()
-	ts_select.select_textobject("@function.outer")
+  ts_select.select_textobject "@function.outer"
 end)
 Keymap({ "x", "o" }, "if", function()
-	ts_select.select_textobject("@function.inner")
+  ts_select.select_textobject "@function.inner"
 end)
 Keymap({ "x", "o" }, "ac", function()
-	ts_select.select_textobject("@class.outer")
+  ts_select.select_textobject "@class.outer"
 end)
 Keymap({ "x", "o" }, "ic", function()
-	ts_select.select_textobject("@class.inner")
+  ts_select.select_textobject "@class.inner"
 end)
 Keymap({ "x", "o" }, "as", function()
-	ts_select.select_textobject("@local.scope")
+  ts_select.select_textobject "@local.scope"
 end)
 Keymap("n", "<leader>lsn", function()
-	ts_swap.swap_next("@parameter.inner")
+  ts_swap.swap_next "@parameter.inner"
 end, { desc = "Swap next parameter" })
 Keymap("n", "<leader>lsp", function()
-	ts_swap.swap_previous("@parameter.inner")
+  ts_swap.swap_previous "@parameter.inner"
 end, { desc = "Swap previous parameter" })
 Keymap({ "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
 Keymap({ "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
 Keymap({ "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
 Keymap({ "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+
+Keymap("n", "<leader>lss", "<CMD>Namu symbols<CR>", { desc = "show symbols " })

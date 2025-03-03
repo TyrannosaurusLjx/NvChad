@@ -20,11 +20,26 @@ local cmdline = {
   end,
 }
 
+local luaset = {
+  "L3MON4D3/LuaSnip",
+  event = "InsertEnter",
+  version = "v2.*",
+  build = "make install_jsregexp",
+  lazy = false,
+  config = function()
+    require("luasnip.loaders.from_vscode").lazy_load {
+      paths = { vim.fn.stdpath "config" .. "/snippets" },
+    }
+    require("luasnip").config.setup { history = true }
+  end,
+}
+
 local cmpconf = {
   "hrsh7th/nvim-cmp",
   dependencies = {
     cmdline,
     "uga-rosa/cmp-dictionary",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-emoji",
     "L3MON4D3/LuaSnip",
     "copilot.lua",
@@ -53,8 +68,8 @@ local cmpconf = {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if luasnip.jumpable(1) then
           luasnip.jump(1)
-        elseif luasnip.expandable() then
-          luasnip.expand()
+        -- elseif luasnip.expandable() then
+        --   luasnip.expand()
         else
           fallback()
         end
@@ -91,6 +106,13 @@ local cmpconf = {
           fallback()
         end
       end, { "i", "s" }),
+
+      ["?"] = cmp.mapping(function(fallback)
+        if cmp.open_docs() then
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
     }
 
     -- 添加数字键映射
@@ -120,6 +142,7 @@ local cmpconf = {
       { name = "bufname" },
       { name = "path" },
       { name = "treesitter" },
+      { name = "nvim_lsp_signature_help" },
     }
     --
     -- local formatting = {
@@ -133,9 +156,14 @@ local cmpconf = {
     --   end,
     -- }
 
+    local view = {
+      docs = { auto_open = false },
+      entries = "custom",
+    }
     opts.sources = sources
     opts.mapping = mappings
+    opts.view = view
     -- opts.formatting = formatting
   end,
 }
-return cmpconf
+return { cmpconf, luaset }

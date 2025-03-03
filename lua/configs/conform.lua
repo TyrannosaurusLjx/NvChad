@@ -1,8 +1,10 @@
-local options = {
+local M = {
   formatters_by_ft = {
     lua = { "stylua" },
-    markdown = { "doctoc" },
+    markdown = { "deno_fmt", "doctoc", stop_after_first = false },
     python = { "ruff_format" },
+    tex = { "latexindent" },
+    bib = { "bibtex-tidy" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },
@@ -21,4 +23,4 @@ local options = {
   }),
 }
 
-return options
+return M

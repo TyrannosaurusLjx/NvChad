@@ -1,8 +1,7 @@
-return{
+return {
   {
     "brenoprata10/nvim-highlight-colors",
-    config = function()
-      require("nvim-highlight-colors").setup({
+    opts = {
       colors = {
         bg = "#282c34",
         fg = "#abb2bf",
@@ -30,12 +29,11 @@ return{
         lightbg = "#3b4048",
         lightbg2 = "#2e323a",
         lightbg3 = "#2e323a",
-        darkbg = "#282c34",
-        darkbg2 = "#21252b",
+        darkbg = "#282C34",
+        darkbg2 = "#21252B",
         darkbg3 = "#21252b",
         none = "NONE",
       },
-      })
-    end,
-  }
+    },
+  },
 }

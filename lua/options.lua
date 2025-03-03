@@ -5,23 +5,35 @@ require "nvchad.options"
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
--- vim.o.guifont = "Hack Nerd Font:h18:#h-none"
--- vim.o.guifont = "Lekton Nerd Font Mono:h20:#h-none"
-vim.o.guifont = "JetBrainsMono Nerd Font:h18:#h-none"
+-----------------------------
+local font_size = 18
+local font = "JetBrainsMono Nerd Font:h" .. font_size .. ":#h-none"
+vim.o.guifont = font
+local function zoom(i)
+  font_size = font_size + i
+  vim.o.guifont = "JetBrainsMono Nerd Font:h" .. font_size .. ":#h-none"
+end
+vim.keymap.set("n", "<D-=>", function()
+  zoom(1)
+end)
+vim.keymap.set("n", "<D-->", function()
+  zoom(-1)
+end)
 -- vim.o.guifont = "NotoSerif Nerd Font Propo:h18:#h-none"
+-----------------------------
 
 if vim.g.neovide then
-	-- vim.g.neovide_text_gamma = 0.7
-	-- vim.g.neovide_text_contrast = 1.0
-	vim.g.neovide_window_blurred = false
-	vim.g.neovide_show_border = false
-	vim.g.experimental_layer_grouping = false
-	vim.g.neovide_input_macos_option_key_is_meta = "both"
-	vim.g.neovide_input_ime = true
-	vim.g.neovide_cursor_animation_length = 0.1
-	vim.g.neovide_transparency = 1.0
-	vim.g.neovide_cursor_trail_size = 0.1
-	vim.g.neovide_floating_corner_radius = 0.5 --浮动窗口的圆角值  0-1, 越大越圆
+  -- vim.g.neovide_text_gamma = 0.7
+  -- vim.g.neovide_text_contrast = 1.0
+  vim.g.neovide_window_blurred = false
+  vim.g.neovide_show_border = false
+  vim.g.experimental_layer_grouping = false
+  vim.g.neovide_input_macos_option_key_is_meta = "both"
+  vim.g.neovide_input_ime = false
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_transparency = 1.0
+  vim.g.neovide_cursor_trail_size = 0.1
+  vim.g.neovide_floating_corner_radius = 0.2 --浮动窗口的圆角值  0-1, 越大越圆
 end
 
 --------------------自定义的一些常量
@@ -72,9 +84,9 @@ vim.opt.termguicolors = true
 
 ---cursor blink
 vim.o.guicursor = table.concat({
-	"n-v-c:block-Cursor/lCursor-blinkwait1-blinkon600-blinkoff500",
-	"i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon600-blinkoff500",
-	"r:hor50-Cursor/lCursor-blinkwait1-blinkon600-blinkoff400",
+  "n-v-c:block-Cursor/lCursor-blinkwait1-blinkon600-blinkoff500",
+  "i-ci:ver25-Cursor/lCursor-blinkwait1-blinkon600-blinkoff500",
+  "r:hor50-Cursor/lCursor-blinkwait1-blinkon600-blinkoff400",
 }, ",")
 
 -- Hide deprecation warnings
@@ -88,7 +100,7 @@ vim.opt.pumheight = 12
 vim.opt.pumwidth = 50 -- 设置补全菜单最小宽度为 50 列
 
 -- 设置保存撤销记录的目录
-vim.opt.undodir = vim.fn.expand("~/temp/undodir")
+vim.opt.undodir = vim.fn.expand "~/temp/undodir"
 -- 启用持久撤销
 vim.opt.undofile = true
 
@@ -109,7 +121,8 @@ vim.g.edge_diagnostic_virtual_text = "grey"
 vim.wo.conceallevel = 2
 
 --------------符号列
-vim.wo.signcolumn = "number"
+-- vim.wo.signcolumn = "number"
+vim.wo.signcolumn = "no"
 
 vim.g.magma_automatically_open_output = 1
 
@@ -118,3 +131,6 @@ vim.o.foldcolumn = "1" -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+---
+vim.cmd [[set scrolloff=5]]
+vim.opt.autoread = true

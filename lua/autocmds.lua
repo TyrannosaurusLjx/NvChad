@@ -9,24 +9,24 @@
 -- 在除了输入模式外，关闭输入法(不能输入中文路径)
 -- vim.g.neovide_input_ime = true
 local function set_ime(args)
-	if args.event:match("Enter$") then
-		vim.g.neovide_input_ime = true
-	else
-		vim.g.neovide_input_ime = false
-	end
+  if args.event:match "Enter$" then
+    vim.g.neovide_input_ime = true
+  else
+    vim.g.neovide_input_ime = false
+  end
 end
 
 local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
-	group = ime_input,
-	pattern = "*",
-	callback = set_ime,
+  group = ime_input,
+  pattern = "*",
+  callback = set_ime,
 })
 
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
-	group = ime_input,
-	pattern = "[/\\?]",
-	callback = set_ime,
+  group = ime_input,
+  pattern = "[/\\?]",
+  callback = set_ime,
 })
 
 ----------
@@ -79,4 +79,16 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 -- 		require("lint").try_lint("cspell")
 -- 	end,
 -- })
-------------
+------------ luasnip setup https://github.com/L3MON4D3/LuaSnip/issues/258
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "*",
+  callback = function()
+    if
+      ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end,
+})
